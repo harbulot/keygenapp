@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>MiniCA WebApp</display-name>
+	<servlet>
+		<servlet-name>minica</servlet-name>
+		<servlet-class>
+			uk.ac.manchester.rcs.bruno.keygenapp.webapp.MiniCaServlet</servlet-class>
+
+		<init-param>
+			<param-name>keystoreResourcePath</param-name>
+			<param-value>/localhost.p12</param-value>
+		</init-param>
+		<init-param>
+			<param-name>keystoreType</param-name>
+			<param-value>PKCS12</param-value>
+		</init-param>
+		<init-param>
+			<param-name>keystorePassword</param-name>
+			<param-value>testtest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>keyPassword</param-name>
+			<param-value>testtest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>issuerName</param-name>
+			<param-value>C=UK,O=Example,OU=ExampleOU,CN=ExampleCN</param-value>
+		</init-param>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>minica</servlet-name>
+		<url-pattern>/minica/*</url-pattern>
+	</servlet-mapping>
+</web-app>
