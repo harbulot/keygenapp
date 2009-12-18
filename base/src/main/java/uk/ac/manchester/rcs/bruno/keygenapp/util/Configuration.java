@@ -62,16 +62,16 @@ import org.bouncycastle.asn1.x509.X509Name;
  * 
  */
 public class Configuration {
-    public final static String KEYSTORE_JNDI_INITPARAM = "keystore";
-    public final static String DEFAULT_KEYSTORE_JNDI_INITPARAM = "keystore/signingKeyStore";
-    public final static String KEYSTORE_PATH_INITPARAM = "keystorePath";
-    public final static String KEYSTORE_RESOURCE_PATH_INITPARAM = "keystoreResourcePath";
-    public final static String KEYSTORE_TYPE_INITPARAM = "keystoreType";
-    public final static String KEYSTORE_PASSWORD_INITPARAM = "keystorePassword";
-    public final static String KEY_PASSWORD_INITPARAM = "keyPassword";
-    public final static String ALIAS_INITPARAM = "keyAlias";
+    public static final String KEYSTORE_JNDI_INITPARAM = "keystore";
+    public static final String DEFAULT_KEYSTORE_JNDI_INITPARAM = "keystore/signingKeyStore";
+    public static final String KEYSTORE_PATH_INITPARAM = "keystorePath";
+    public static final String KEYSTORE_RESOURCE_PATH_INITPARAM = "keystoreResourcePath";
+    public static final String KEYSTORE_TYPE_INITPARAM = "keystoreType";
+    public static final String KEYSTORE_PASSWORD_INITPARAM = "keystorePassword";
+    public static final String KEY_PASSWORD_INITPARAM = "keyPassword";
+    public static final String ALIAS_INITPARAM = "keyAlias";
 
-    public final static String ISSUER_NAME_INITPARAM = "issuerName";
+    public static final String ISSUER_NAME_INITPARAM = "issuerName";
 
     private PrivateKey caPrivKey;
     private PublicKey caPublicKey;
@@ -148,11 +148,10 @@ public class Configuration {
         String issuerName = servlet.getInitParameter(ISSUER_NAME_INITPARAM);
 
         try {
-            Context ctx = null;
+            Context ctx = new InitialContext();
             try {
-                keyStore = (KeyStore) new InitialContext()
-                        .lookup("java:comp/env/" + keystoreJdniName);
-
+                keyStore = (KeyStore) ctx.lookup("java:comp/env/"
+                        + keystoreJdniName);
             } finally {
                 if (ctx != null) {
                     ctx.close();
@@ -170,8 +169,8 @@ public class Configuration {
                     if (keystorePath != null) {
                         ksInputStream = new FileInputStream(keystorePath);
                     } else if (keystoreResourcePath != null) {
-                        ksInputStream = this.getClass().getResourceAsStream(
-                                keystoreResourcePath);
+                        ksInputStream = Configuration.class
+                                .getResourceAsStream(keystoreResourcePath);
                     }
                     keyStore = KeyStore
                             .getInstance((keystoreType != null) ? keystoreType
@@ -210,8 +209,7 @@ public class Configuration {
             }
             if (alias == null) {
                 throw new ServletException(
-                        "Invalid keystore configuration: alias unspecified or couldn't find key at alias: "
-                                + alias);
+                        "Invalid keystore configuration: alias unspecified or couldn't find the alias.");
             }
 
             PublicKey publicKey = keyStore.getCertificate(alias).getPublicKey();

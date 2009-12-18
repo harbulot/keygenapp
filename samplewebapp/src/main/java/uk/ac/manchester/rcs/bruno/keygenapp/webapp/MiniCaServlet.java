@@ -55,7 +55,7 @@ import uk.ac.manchester.rcs.bruno.keygenapp.util.Configuration;
 
 public class MiniCaServlet extends HttpServlet {
     private static final long serialVersionUID = -1103006284486954147L;
-    private final Configuration configuration = new Configuration();
+    private final transient Configuration configuration = new Configuration();
 
     @Override
     public void init() throws ServletException {
