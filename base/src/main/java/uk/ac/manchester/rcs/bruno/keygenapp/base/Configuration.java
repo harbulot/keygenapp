@@ -1,6 +1,6 @@
 /**
 
-Copyright (c) 2008-2009, The University of Manchester, United Kingdom.
+Copyright (c) 2008-2010, The University of Manchester, United Kingdom.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without 
@@ -30,7 +30,7 @@ POSSIBILITY OF SUCH DAMAGE.
   Author........: Bruno Harbulot
  
  */
-package uk.ac.manchester.rcs.bruno.keygenapp.util;
+package uk.ac.manchester.rcs.bruno.keygenapp.base;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,6 +43,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.Enumeration;
 
 import javax.naming.Context;
@@ -74,11 +75,11 @@ public class Configuration {
     public static final String ISSUER_NAME_INITPARAM = "issuerName";
 
     private PrivateKey caPrivKey;
-    private PublicKey caPublicKey;
+    private X509Certificate caCertificate;
 
     private X509Name issuerName;
 
-    private long certificateSerialNumber;
+    private long certificateSerialNumber = 2;
 
     public PrivateKey getCaPrivKey() {
         return this.caPrivKey;
@@ -89,11 +90,15 @@ public class Configuration {
     }
 
     public PublicKey getCaPublicKey() {
-        return this.caPublicKey;
+        return getCaCertificate().getPublicKey();
     }
 
-    public void setCaPublicKey(PublicKey caPublicKey) {
-        this.caPublicKey = caPublicKey;
+    public X509Certificate getCaCertificate() {
+        return this.caCertificate;
+    }
+
+    public void setCaCertificate(X509Certificate caCertificate) {
+        this.caCertificate = caCertificate;
     }
 
     public X509Name getIssuerName() {
@@ -212,13 +217,14 @@ public class Configuration {
                         "Invalid keystore configuration: alias unspecified or couldn't find the alias.");
             }
 
-            PublicKey publicKey = keyStore.getCertificate(alias).getPublicKey();
+            X509Certificate certificate = (X509Certificate) keyStore
+                    .getCertificate(alias);
             PrivateKey privateKey = (PrivateKey) keyStore.getKey(alias,
                     keyPassword != null ? keyPassword.toCharArray() : null);
 
             setIssuerName(issuerName);
             setCaPrivKey(privateKey);
-            setCaPublicKey(publicKey);
+            setCaCertificate(certificate);
         } catch (UnrecoverableKeyException e) {
             throw new ServletException("Could not load keystore.");
         } catch (KeyStoreException e) {

@@ -11,7 +11,7 @@
 
 		<init-param>
 			<param-name>keystoreResourcePath</param-name>
-			<param-value>/localhost.p12</param-value>
+			<param-value>/cacert.p12</param-value>
 		</init-param>
 		<init-param>
 			<param-name>keystoreType</param-name>
@@ -27,7 +27,7 @@
 		</init-param>
 		<init-param>
 			<param-name>issuerName</param-name>
-			<param-value>C=UK,O=Example,OU=ExampleOU,CN=ExampleCN</param-value>
+			<param-value>C=UK,ST=Greater Manchester,O=University of Manchester,OU=Research Computing Services,CN=Dummy Certification Authority</param-value>
 		</init-param>
 
 	</servlet>
@@ -36,4 +36,10 @@
 		<servlet-name>minica</servlet-name>
 		<url-pattern>/minica/*</url-pattern>
 	</servlet-mapping>
+
+	<mime-mapping>
+		<extension>crt</extension>
+		<mime-type>application/x-x509-certificate</mime-type>
+	</mime-mapping>
+
 </web-app>

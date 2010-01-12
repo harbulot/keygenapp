@@ -1,6 +1,6 @@
 /**
 
-Copyright (c) 2008-2009, The University of Manchester, United Kingdom.
+Copyright (c) 2008-2010, The University of Manchester, United Kingdom.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without 
@@ -30,9 +30,10 @@ POSSIBILITY OF SUCH DAMAGE.
   Author........: Bruno Harbulot
  
  */
-package uk.ac.manchester.rcs.bruno.keygenapp.util;
+package uk.ac.manchester.rcs.bruno.keygenapp.base;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.math.BigInteger;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -56,10 +57,13 @@ import org.bouncycastle.asn1.x509.KeyUsage;
 import org.bouncycastle.asn1.x509.SubjectKeyIdentifier;
 import org.bouncycastle.asn1.x509.X509Extensions;
 import org.bouncycastle.asn1.x509.X509Name;
+import org.bouncycastle.jce.PKCS10CertificationRequest;
 import org.bouncycastle.jce.netscape.NetscapeCertRequest;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.openssl.PEMReader;
 import org.bouncycastle.util.encoders.Base64;
 import org.bouncycastle.x509.X509V3CertificateGenerator;
+import org.bouncycastle.x509.extension.AuthorityKeyIdentifierStructure;
 import org.bouncycastle.x509.extension.SubjectKeyIdentifierStructure;
 
 /**
@@ -189,6 +193,14 @@ public class MiniCaCertGen {
                         | NetscapeCertType.smime));
 
         /*
+         * Adds the authority key identifier extension.
+         */
+        AuthorityKeyIdentifierStructure authorityKeyIdentifier = new AuthorityKeyIdentifierStructure(
+                caPubKey);
+        certGenerator.addExtension(X509Extensions.AuthorityKeyIdentifier,
+                false, authorityKeyIdentifier);
+
+        /*
          * Adds the subject key identifier extension.
          */
         SubjectKeyIdentifier subjectKeyIdentifier = new SubjectKeyIdentifierStructure(
@@ -228,8 +240,8 @@ public class MiniCaCertGen {
      *            CA public key
      * @param caPrivKey
      *            CA private key
-     * @param spkacData
-     *            data from an HTML keygen tag
+     * @param netscapeCertReq
+     *            NetscapeCertRequest object build from the SPKAC data
      * @param subject
      *            subject (and issuer) DN for this certificate, RFC 2253 format
      *            preferred.
@@ -253,18 +265,152 @@ public class MiniCaCertGen {
      * @throws NoSuchProviderException
      */
     public static X509Certificate createCert(PublicKey caPubKey,
+            PrivateKey caPrivKey, NetscapeCertRequest netscapeCertReq,
+            X509Name subject, X509Name issuer, Date startDate, Date endDate,
+            String subjAltNameURI, BigInteger serialNumber) throws IOException,
+            InvalidKeyException, IllegalStateException,
+            NoSuchAlgorithmException, SignatureException, CertificateException,
+            NoSuchProviderException {
+        return createCert(caPubKey, caPrivKey, netscapeCertReq.getPublicKey(),
+                subject, issuer, startDate, endDate, subjAltNameURI,
+                serialNumber);
+    }
+
+    /**
+     * Creates a certificate, containing a subjectAltName URI.
+     * 
+     * @param caPubKey
+     *            CA public key
+     * @param caPrivKey
+     *            CA private key
+     * @param pkcs10csr
+     *            PKCS10CertificationRequest object (representing the
+     *            certification request)
+     * @param subject
+     *            subject (and issuer) DN for this certificate, RFC 2253 format
+     *            preferred.
+     * @param startDate
+     *            date from and until which the certificate will be valid
+     *            (defaults to current date and time if null)
+     * @param endDate
+     *            date until which the certificate will be valid (defaults to
+     *            365 days after start date if null)
+     * @param subjAltNameURI
+     *            URI to be placed in subjectAltName
+     * @param serialNumber
+     *            certificate serial number
+     * @return certificate
+     * @throws IOException
+     * @throws InvalidKeyException
+     * @throws IllegalStateException
+     * @throws NoSuchAlgorithmException
+     * @throws SignatureException
+     * @throws CertificateException
+     * @throws NoSuchProviderException
+     */
+    public static X509Certificate createCert(PublicKey caPubKey,
+            PrivateKey caPrivKey, PKCS10CertificationRequest pkcs10csr,
+            X509Name subject, X509Name issuer, Date startDate, Date endDate,
+            String subjAltNameURI, BigInteger serialNumber) throws IOException,
+            InvalidKeyException, IllegalStateException,
+            NoSuchAlgorithmException, SignatureException, CertificateException,
+            NoSuchProviderException {
+        return createCert(caPubKey, caPrivKey, pkcs10csr.getPublicKey(),
+                subject, issuer, startDate, endDate, subjAltNameURI,
+                serialNumber);
+    }
+
+    /**
+     * Creates a certificate, containing a subjectAltName URI.
+     * 
+     * @param caPubKey
+     *            CA public key
+     * @param caPrivKey
+     *            CA private key
+     * @param spkacData
+     *            SPKAC data obtained from the KEYGEN tag
+     * @param subject
+     *            subject (and issuer) DN for this certificate, RFC 2253 format
+     *            preferred.
+     * @param startDate
+     *            date from and until which the certificate will be valid
+     *            (defaults to current date and time if null)
+     * @param endDate
+     *            date until which the certificate will be valid (defaults to
+     *            365 days after start date if null)
+     * @param subjAltNameURI
+     *            URI to be placed in subjectAltName
+     * @param serialNumber
+     *            certificate serial number
+     * @return certificate
+     * @throws IOException
+     * @throws InvalidKeyException
+     * @throws IllegalStateException
+     * @throws NoSuchAlgorithmException
+     * @throws SignatureException
+     * @throws CertificateException
+     * @throws NoSuchProviderException
+     */
+    public static X509Certificate createCertFromSpkac(PublicKey caPubKey,
             PrivateKey caPrivKey, String spkacData, X509Name subject,
             X509Name issuer, Date startDate, Date endDate,
             String subjAltNameURI, BigInteger serialNumber) throws IOException,
             InvalidKeyException, IllegalStateException,
             NoSuchAlgorithmException, SignatureException, CertificateException,
             NoSuchProviderException {
+        return createCert(caPubKey, caPrivKey, new NetscapeCertRequest(Base64
+                .decode(spkacData)), subject, issuer, startDate, endDate,
+                subjAltNameURI, serialNumber);
+    }
 
-        NetscapeCertRequest netscapeCertReq = new NetscapeCertRequest(Base64
-                .decode(spkacData));
+    /**
+     * Creates a certificate, containing a subjectAltName URI.
+     * 
+     * @param caPubKey
+     *            CA public key
+     * @param caPrivKey
+     *            CA private key
+     * @param spkacData
+     *            SPKAC data obtained from the KEYGEN tag
+     * @param subject
+     *            subject (and issuer) DN for this certificate, RFC 2253 format
+     *            preferred.
+     * @param startDate
+     *            date from and until which the certificate will be valid
+     *            (defaults to current date and time if null)
+     * @param endDate
+     *            date until which the certificate will be valid (defaults to
+     *            365 days after start date if null)
+     * @param subjAltNameURI
+     *            URI to be placed in subjectAltName
+     * @param serialNumber
+     *            certificate serial number
+     * @return certificate
+     * @throws IOException
+     * @throws InvalidKeyException
+     * @throws IllegalStateException
+     * @throws NoSuchAlgorithmException
+     * @throws SignatureException
+     * @throws CertificateException
+     * @throws NoSuchProviderException
+     */
+    public static X509Certificate createCertFromPemCsr(PublicKey caPubKey,
+            PrivateKey caPrivKey, String pemCsr, X509Name subject,
+            X509Name issuer, Date startDate, Date endDate,
+            String subjAltNameURI, BigInteger serialNumber) throws IOException,
+            InvalidKeyException, IllegalStateException,
+            NoSuchAlgorithmException, SignatureException, CertificateException,
+            NoSuchProviderException {
 
-        return createCert(caPubKey, caPrivKey, netscapeCertReq.getPublicKey(),
-                subject, issuer, startDate, endDate, subjAltNameURI,
-                serialNumber);
+        PEMReader pemReader = new PEMReader(new StringReader(pemCsr));
+        Object pemObject = pemReader.readObject();
+        if (pemObject instanceof PKCS10CertificationRequest) {
+            PKCS10CertificationRequest pkcs10Obj = (PKCS10CertificationRequest) pemObject;
+
+            return createCert(caPubKey, caPrivKey, pkcs10Obj, subject, issuer,
+                    startDate, endDate, subjAltNameURI, serialNumber);
+        } else {
+            throw new IOException("Unable to read PEM CSR data.");
+        }
     }
 }

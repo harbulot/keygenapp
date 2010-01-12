@@ -1,6 +1,6 @@
 /**
 
-Copyright (c) 2008-2009, The University of Manchester, United Kingdom.
+Copyright (c) 2008-2010, The University of Manchester, United Kingdom.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without 
@@ -33,6 +33,7 @@ POSSIBILITY OF SUCH DAMAGE.
 package uk.ac.manchester.rcs.bruno.keygenapp.webapp;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.math.BigInteger;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -49,9 +50,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.bouncycastle.asn1.DERSequence;
 import org.bouncycastle.asn1.x509.X509Name;
+import org.bouncycastle.openssl.PEMWriter;
 
-import uk.ac.manchester.rcs.bruno.keygenapp.util.MiniCaCertGen;
-import uk.ac.manchester.rcs.bruno.keygenapp.util.Configuration;
+import uk.ac.manchester.rcs.bruno.keygenapp.base.Configuration;
+import uk.ac.manchester.rcs.bruno.keygenapp.base.MiniCaCertGen;
 
 public class MiniCaServlet extends HttpServlet {
     private static final long serialVersionUID = -1103006284486954147L;
@@ -78,22 +80,41 @@ public class MiniCaServlet extends HttpServlet {
         try {
             String webId = request.getParameter("webid");
             String spkacData = request.getParameter("spkac");
+            String pemCsrData = request.getParameter("csrdata");
 
             Date startDate = new Date();
             Date endDate = new Date(startDate.getTime() + 365L * 24L * 60L
                     * 60L * 1000L);
 
-            X509Certificate cert = MiniCaCertGen.createCert(this.configuration
-                    .getCaPublicKey(), this.configuration.getCaPrivKey(),
-                    spkacData, new X509Name(new DERSequence()),
-                    this.configuration.getIssuerName(), startDate, endDate,
-                    webId, BigInteger.valueOf(this.configuration
-                            .nextCertificateSerialNumber()));
+            X509Certificate cert;
+            if ((spkacData == null) || spkacData.isEmpty()) {
+                cert = MiniCaCertGen.createCertFromPemCsr(this.configuration
+                        .getCaPublicKey(), this.configuration.getCaPrivKey(),
+                        pemCsrData, new X509Name(new DERSequence()),
+                        this.configuration.getIssuerName(), startDate, endDate,
+                        webId, BigInteger.valueOf(this.configuration
+                                .nextCertificateSerialNumber()));
+                StringWriter sw = new StringWriter();
+                PEMWriter pemWriter = new PEMWriter(sw);
+                pemWriter.writeObject(cert);
+                pemWriter.close();
+                String pemCert = sw.toString();
 
-            byte[] encodedCert = cert.getEncoded();
-            response.setContentType("application/x-x509-user-cert");
-            response.setContentLength(encodedCert.length);
-            response.getOutputStream().write(encodedCert);
+                response.setContentType("application/x-x509-user-cert");
+                response.setContentLength(pemCert.length());
+                response.getWriter().print(pemCert);
+            } else {
+                cert = MiniCaCertGen.createCertFromSpkac(this.configuration
+                        .getCaPublicKey(), this.configuration.getCaPrivKey(),
+                        spkacData, new X509Name(new DERSequence()),
+                        this.configuration.getIssuerName(), startDate, endDate,
+                        webId, BigInteger.valueOf(this.configuration
+                                .nextCertificateSerialNumber()));
+                byte[] encodedCert = cert.getEncoded();
+                response.setContentType("application/x-x509-user-cert");
+                response.setContentLength(encodedCert.length);
+                response.getOutputStream().write(encodedCert);
+            }
         } catch (InvalidKeyException e) {
             throw new ServletException(e);
         } catch (IllegalStateException e) {
