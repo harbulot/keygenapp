@@ -120,7 +120,7 @@ function createCsr() {
 				 * Installs the certificate.
 				 */
 				enrollObj
-						.InstallResponse(0, xmlHttpRequest.responseText, 0, "");
+						.InstallResponse(4, xmlHttpRequest.responseText, 0, "");
 			} else {
 				window.alert("The server returned an error status: "
 						+ xmlHttpRequest.status);

@@ -31,9 +31,6 @@
 	<li>You may need to configure the trust level (in this tab), using
 	<i>Custom Level...</i>: enable <i>Initialize and script ActiveX
 	controls not marked as safe for scripting</i>.</li>
-	<li>Install <a href="cacert.crt">this dummy CA certificate</a> in
-	the <b>Trusted Root Certification Authorities</b> store (you'll have to
-	select the store manually).</li>
 </ul>
 </p>
 <form>
