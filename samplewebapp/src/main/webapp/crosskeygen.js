@@ -105,7 +105,7 @@ function createCsrCertEnroll(enrollFactObj, keylength) {
 	xmlHttpRequest.open("POST", "minica/", true);
 
 	var params = "webid="
-			+ encodeURIComponent(document.getElementById("webid_ie").value);
+			+ encodeURIComponent(document.getElementById("webid").value);
 	params += "&csrdata=" + encodeURIComponent(csr);
 
 	xmlHttpRequest.setRequestHeader("Content-type",
