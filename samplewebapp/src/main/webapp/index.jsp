@@ -29,8 +29,12 @@ Server 2008, you need to configure the following for this to work:</p>
 <form id="keygenform">
 <table>
 	<tr>
+		<td>Common Name (to help you identify the certificate):</td>
+		<td><input name="cn" id="cn" type="text" value="" /></td>
+	</tr>
+	<tr>
 		<td>WebID:</td>
-		<td><input name="webid" id="webid" /></td>
+		<td><input name="webid" id="webid" type="text" value="" /></td>
 	</tr>
 	<tr>
 		<td>Key strength:</td>

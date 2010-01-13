@@ -81,18 +81,26 @@ public class MiniCaServlet extends HttpServlet {
             String webId = request.getParameter("webid");
             String spkacData = request.getParameter("spkac");
             String pemCsrData = request.getParameter("csrdata");
+            String cn = request.getParameter("cn");
 
             Date startDate = new Date();
             Date endDate = new Date(startDate.getTime() + 365L * 24L * 60L
                     * 60L * 1000L);
 
+            X509Name subjectDn;
+            if ((cn == null) || cn.isEmpty()) {
+                subjectDn = new X509Name(new DERSequence());
+            } else {
+                subjectDn = new X509Name("CN=" + cn);
+            }
+
             X509Certificate cert;
             if ((spkacData == null) || spkacData.isEmpty()) {
                 cert = MiniCaCertGen.createCertFromPemCsr(this.configuration
                         .getCaPublicKey(), this.configuration.getCaPrivKey(),
-                        pemCsrData, new X509Name(new DERSequence()),
-                        this.configuration.getIssuerName(), startDate, endDate,
-                        webId, BigInteger.valueOf(this.configuration
+                        pemCsrData, subjectDn, this.configuration
+                                .getIssuerName(), startDate, endDate, webId,
+                        BigInteger.valueOf(this.configuration
                                 .nextCertificateSerialNumber()));
                 StringWriter sw = new StringWriter();
                 PEMWriter pemWriter = new PEMWriter(sw);
@@ -106,9 +114,9 @@ public class MiniCaServlet extends HttpServlet {
             } else {
                 cert = MiniCaCertGen.createCertFromSpkac(this.configuration
                         .getCaPublicKey(), this.configuration.getCaPrivKey(),
-                        spkacData, new X509Name(new DERSequence()),
-                        this.configuration.getIssuerName(), startDate, endDate,
-                        webId, BigInteger.valueOf(this.configuration
+                        spkacData, subjectDn, this.configuration
+                                .getIssuerName(), startDate, endDate, webId,
+                        BigInteger.valueOf(this.configuration
                                 .nextCertificateSerialNumber()));
                 byte[] encodedCert = cert.getEncoded();
                 response.setContentType("application/x-x509-user-cert");

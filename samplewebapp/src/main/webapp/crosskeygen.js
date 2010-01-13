@@ -106,6 +106,7 @@ function createCsrCertEnroll(enrollFactObj, keylength) {
 
 	var params = "webid="
 			+ encodeURIComponent(document.getElementById("webid").value);
+	params += "&cn=" + encodeURIComponent(document.getElementById("cn").value);
 	params += "&csrdata=" + encodeURIComponent(csr);
 
 	xmlHttpRequest.setRequestHeader("Content-type",
@@ -162,6 +163,7 @@ function createCsrXenroll(enrollObj, keylength) {
 
 	var params = "webid="
 			+ encodeURIComponent(document.getElementById("webid").value);
+	params += "&cn=" + encodeURIComponent(document.getElementById("cn").value);
 	params += "&csrdata=" + encodeURIComponent(csr);
 
 	xmlHttpRequest.setRequestHeader("Content-type",
@@ -215,12 +217,7 @@ function createCsr() {
 function configurePage() {
 	var keygenElem = document.getElementById("spkac");
 
-	if ((keygenElem != null) && (keygenElem.tagName == "SELECT")) {
-		/*
-		 * If the KEYGEN element has been turned into a SELECT, it's supported.
-		 * We're likely to be using Mozilla/Firefox
-		 */
-
+	if (navigator.appName != "Microsoft Internet Explorer") {
 		var keygenFormElem = document.getElementById("keygenform");
 		keygenFormElem.setAttribute("action", "minica/");
 		keygenFormElem.setAttribute("method", "POST");
