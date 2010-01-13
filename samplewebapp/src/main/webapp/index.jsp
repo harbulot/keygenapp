@@ -5,41 +5,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Keygen sample webapp</title>
-<script type="text/javascript" src="ie-certenroll.js">
+<script type="text/javascript" src="crosskeygen.js">
 	/**/
 </script>
 </head>
-<body>
-<h1>Firefox/Mozilla and Opera</h1>
-<form action="minica/" method="POST">
-<table>
-	<tr>
-		<td>WebID:</td>
-		<td><input name="webid" /></td>
-	</tr>
-	<tr>
-		<td>Key strength:</td>
-		<td><keygen name="spkac" challenge="TheChallenge1" /></td>
-	</tr>
-</table>
-<input type="submit" /></form>
-<h1>Internet Explorer on Windows Vista/Server 2008 or above</h1>
-<p>You need to configure the following for this to work:
+<body onload="configurePage()">
+<div id="iehelptext" style="display: none;">
+<p>Using Internet Explorer under Windows Vista or above or Windows
+Server 2008, you need to configure the following for this to work:</p>
 <ul>
 	<li>Add this site to the <i>Trusted Sites</i> list: in Internet
-	Options -> Security -> Trusted Sites -> Sites -> Add ...</li>
+	Options -&gt; Security -&gt; Trusted Sites -&gt; Sites -&gt; Add ...</li>
 	<li>You may need to configure the trust level (in this tab), using
 	<i>Custom Level...</i>: enable <i>Initialize and script ActiveX
 	controls not marked as safe for scripting</i>.</li>
+	<li>If you are using Windows Vista without SP1 or above, you will
+	probably need to install <a href="cacert.crt">this certificate</a> as a
+	Trusted Root Certification Authority Certificate for your own
+	certificate installation to succeed. You should probably remove that
+	trusted root CA certificate afterwards.</li>
 </ul>
-</p>
-<form>
+</div>
+<form id="keygenform">
 <table>
 	<tr>
 		<td>WebID:</td>
-		<td><input name="webid_ie" id="webid_ie" /></td>
+		<td><input name="webid" id="webid" /></td>
+	</tr>
+	<tr>
+		<td>Key strength:</td>
+		<td id="keystrenghtd"><keygen id="spkac" name="spkac"
+			challenge="TheChallenge1" /></td>
 	</tr>
 </table>
-<input type="button" value="Submit" onclick="createCsr()" /></form>
-</body>
+<input id="keygensubmit" type="submit" /></form>
 </html>
