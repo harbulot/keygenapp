@@ -84,6 +84,7 @@ public class Configuration {
 
     public final static String ISSUERNAME_JNDI_NAME = "keygenapp/issuerName";
 
+    public final static String KEYSTORE_RESOURCE_PATH_INITPARAM = "keystoreResourcePath";
     public final static String KEYSTORE_PATH_INITPARAM = "keystorePath";
     public final static String KEYSTORE_TYPE_INITPARAM = "keystoreType";
     public final static String KEYSTORE_PASSWORD_INITPARAM = "keystorePassword";
@@ -152,6 +153,8 @@ public class Configuration {
     public void init(HttpServlet servlet) throws ServletException {
         KeyStore keyStore = null;
 
+        String keystoreResourcePath = servlet
+                .getInitParameter(KEYSTORE_RESOURCE_PATH_INITPARAM);
         String keystorePath = servlet.getInitParameter(KEYSTORE_PATH_INITPARAM);
         String keystoreType = servlet.getInitParameter(KEYSTORE_TYPE_INITPARAM);
         char[] keystorePasswordArray = null;
@@ -302,6 +305,9 @@ public class Configuration {
                     try {
                         if (keystorePath != null) {
                             ksInputStream = new FileInputStream(keystorePath);
+                        } else if (keystoreResourcePath != null) {
+                            ksInputStream = Configuration.class
+                                    .getResourceAsStream(keystoreResourcePath);
                         }
                         keyStore = KeyStore
                                 .getInstance((keystoreType != null) ? keystoreType
