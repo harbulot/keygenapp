@@ -61,6 +61,8 @@ public class MiniCaServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
+        super.init();
+
         /**
          * Initialises the servlet: loads the keystore/keys to use to sign the
          * assertions and the issuer name.

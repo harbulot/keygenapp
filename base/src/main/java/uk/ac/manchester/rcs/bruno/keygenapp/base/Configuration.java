@@ -45,6 +45,8 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -63,14 +65,30 @@ import org.bouncycastle.asn1.x509.X509Name;
  * 
  */
 public class Configuration {
-    public static final String KEYSTORE_JNDI_INITPARAM = "keystore";
-    public static final String DEFAULT_KEYSTORE_JNDI_INITPARAM = "keystore/signingKeyStore";
-    public static final String KEYSTORE_PATH_INITPARAM = "keystorePath";
-    public static final String KEYSTORE_RESOURCE_PATH_INITPARAM = "keystoreResourcePath";
-    public static final String KEYSTORE_TYPE_INITPARAM = "keystoreType";
-    public static final String KEYSTORE_PASSWORD_INITPARAM = "keystorePassword";
-    public static final String KEY_PASSWORD_INITPARAM = "keyPassword";
-    public static final String ALIAS_INITPARAM = "keyAlias";
+    public static Logger LOG = Logger.getLogger(Configuration.class
+            .getCanonicalName());
+
+    public final static String CERTIFICATE_JNDI_NAME = "keygenapp/signingCertificate";
+    public final static String PRIVATEKEY_JNDI_NAME = "keygenapp/signingPrivateKey";
+
+    public final static String KEYSTORE_JNDI_NAME = "keygenapp/signingKeyStore";
+
+    public final static String KEYSTOREPATH_JNDI_NAME = "keygenapp/signingKeystorePath";
+    public final static String KEYSTORETYPE_JNDI_NAME = "keygenapp/signingKeystoreType";
+    public final static String KEYSTOREPASSWORDARRAY_JNDI_NAME = "keygenapp/signingKeystorePasswordArray";
+    public final static String KEYSTOREPASSWORD_JNDI_NAME = "keygenapp/signingKeystorePassword";
+
+    public final static String KEYPASSWORDARRAY_JNDI_NAME = "keygenapp/signingKeyPasswordArray";
+    public final static String KEYPASSWORD_JNDI_NAME = "keygenapp/signingKeyPassword";
+    public final static String KEYALIAS_JNDI_NAME = "keygenapp/signingKeyAlias";
+
+    public final static String ISSUERNAME_JNDI_NAME = "keygenapp/issuerName";
+
+    public final static String KEYSTORE_PATH_INITPARAM = "keystorePath";
+    public final static String KEYSTORE_TYPE_INITPARAM = "keystoreType";
+    public final static String KEYSTORE_PASSWORD_INITPARAM = "keystorePassword";
+    public final static String KEY_PASSWORD_INITPARAM = "keyPassword";
+    public final static String ALIAS_INITPARAM = "keyAlias";
 
     public static final String ISSUER_NAME_INITPARAM = "issuerName";
 
@@ -132,105 +150,255 @@ public class Configuration {
      * assertions and the issuer name.
      */
     public void init(HttpServlet servlet) throws ServletException {
-
         KeyStore keyStore = null;
 
-        String keystoreJdniName = servlet
-                .getInitParameter(KEYSTORE_JNDI_INITPARAM);
-        if (keystoreJdniName == null) {
-            keystoreJdniName = DEFAULT_KEYSTORE_JNDI_INITPARAM;
-        }
         String keystorePath = servlet.getInitParameter(KEYSTORE_PATH_INITPARAM);
-        String keystoreResourcePath = servlet
-                .getInitParameter(KEYSTORE_RESOURCE_PATH_INITPARAM);
         String keystoreType = servlet.getInitParameter(KEYSTORE_TYPE_INITPARAM);
-        String keystorePassword = servlet
-                .getInitParameter(KEYSTORE_PASSWORD_INITPARAM);
-        String keyPassword = servlet.getInitParameter(KEY_PASSWORD_INITPARAM);
-        if (keyPassword == null)
-            keyPassword = keystorePassword;
+        char[] keystorePasswordArray = null;
+        char[] keyPasswordArray = null;
+        {
+            String keystorePassword = servlet
+                    .getInitParameter(KEYSTORE_PASSWORD_INITPARAM);
+            if (keystorePassword != null) {
+                keystorePasswordArray = keystorePassword.toCharArray();
+            }
+            String keyPassword = servlet
+                    .getInitParameter(KEY_PASSWORD_INITPARAM);
+            if (keyPassword != null) {
+                keyPasswordArray = keyPassword.toCharArray();
+            } else {
+                keyPasswordArray = keystorePasswordArray;
+            }
+        }
         String alias = servlet.getInitParameter(ALIAS_INITPARAM);
+
         String issuerName = servlet.getInitParameter(ISSUER_NAME_INITPARAM);
 
+        X509Certificate certificate = null;
+        PrivateKey privateKey = null;
+
         try {
-            Context ctx = new InitialContext();
+            Context initCtx = new InitialContext();
+            Context ctx = (Context) initCtx.lookup("java:comp/env");
             try {
-                keyStore = (KeyStore) ctx.lookup("java:comp/env/"
-                        + keystoreJdniName);
+                try {
+                    certificate = (X509Certificate) ctx
+                            .lookup(CERTIFICATE_JNDI_NAME);
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
+
+                try {
+                    privateKey = (PrivateKey) ctx.lookup(PRIVATEKEY_JNDI_NAME);
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
+
+                try {
+                    keyStore = (KeyStore) ctx.lookup(KEYSTORE_JNDI_NAME);
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
+
+                try {
+                    String jndiKeystorePath = (String) ctx
+                            .lookup(KEYSTOREPATH_JNDI_NAME);
+                    if (jndiKeystorePath != null) {
+                        keystorePath = jndiKeystorePath;
+                    }
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
+                try {
+                    String jndiKeystoreType = (String) ctx
+                            .lookup(KEYSTORETYPE_JNDI_NAME);
+                    if (jndiKeystoreType != null) {
+                        keystoreType = jndiKeystoreType;
+                    }
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
+
+                try {
+                    String jndiKeystorePassword = (String) ctx
+                            .lookup(KEYSTOREPASSWORD_JNDI_NAME);
+                    if (jndiKeystorePassword != null) {
+                        keystorePasswordArray = jndiKeystorePassword
+                                .toCharArray();
+                    }
+                } catch (NameNotFoundException e) {
+                }
+                try {
+                    char[] jndiKeystorePasswordArray = (char[]) ctx
+                            .lookup(KEYSTOREPASSWORDARRAY_JNDI_NAME);
+                    if (jndiKeystorePasswordArray != null) {
+                        keystorePasswordArray = jndiKeystorePasswordArray;
+                    }
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
+
+                try {
+                    String jndiKeyPassword = (String) ctx
+                            .lookup(KEYPASSWORD_JNDI_NAME);
+                    if (jndiKeyPassword != null) {
+                        keyPasswordArray = jndiKeyPassword.toCharArray();
+                    }
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
+                try {
+                    char[] jndiKeyPasswordArray = (char[]) ctx
+                            .lookup(KEYPASSWORDARRAY_JNDI_NAME);
+                    if (jndiKeyPasswordArray != null) {
+                        keyPasswordArray = jndiKeyPasswordArray;
+                    }
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
+
+                try {
+                    String jndiKeyAlias = (String) ctx
+                            .lookup(KEYALIAS_JNDI_NAME);
+                    if (jndiKeyAlias != null) {
+                        alias = jndiKeyAlias;
+                    }
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
+
+                try {
+                    String jndiIssuerName = (String) ctx
+                            .lookup(ISSUERNAME_JNDI_NAME);
+                    if (jndiIssuerName != null) {
+                        issuerName = jndiIssuerName;
+                    }
+                } catch (NameNotFoundException e) {
+                    LOG.log(Level.FINE, "JNDI name not found", e);
+                }
             } finally {
                 if (ctx != null) {
                     ctx.close();
                 }
+                if (initCtx != null) {
+                    initCtx.close();
+                }
             }
         } catch (NameNotFoundException e) {
+            LOG.log(Level.INFO, "Unable to load JNDI context.", e);
         } catch (NamingException e) {
-            throw new ServletException(e);
+            LOG.log(Level.INFO, "Unable to load JNDI context.", e);
         }
-        if (keyStore == null) {
-            try {
-                InputStream ksInputStream = null;
 
+        if (keyPasswordArray == null) {
+            keyPasswordArray = keystorePasswordArray;
+        }
+
+        if ((certificate == null) || (privateKey == null)) {
+            if (keyStore == null) {
                 try {
-                    if (keystorePath != null) {
-                        ksInputStream = new FileInputStream(keystorePath);
-                    } else if (keystoreResourcePath != null) {
-                        ksInputStream = Configuration.class
-                                .getResourceAsStream(keystoreResourcePath);
+                    InputStream ksInputStream = null;
+
+                    try {
+                        if (keystorePath != null) {
+                            ksInputStream = new FileInputStream(keystorePath);
+                        }
+                        keyStore = KeyStore
+                                .getInstance((keystoreType != null) ? keystoreType
+                                        : KeyStore.getDefaultType());
+                        keyStore.load(ksInputStream, keystorePasswordArray);
+                    } finally {
+                        if (ksInputStream != null) {
+                            ksInputStream.close();
+                        }
                     }
-                    keyStore = KeyStore
-                            .getInstance((keystoreType != null) ? keystoreType
-                                    : KeyStore.getDefaultType());
-                    keyStore.load(ksInputStream,
-                            keystorePassword != null ? keystorePassword
-                                    .toCharArray() : null);
-                } finally {
-                    if (ksInputStream != null) {
-                        ksInputStream.close();
+                } catch (FileNotFoundException e) {
+                    LOG
+                            .log(
+                                    Level.SEVERE,
+                                    "Error configuring servlet (could not load keystore).",
+                                    e);
+                    throw new ServletException("Could not load keystore.");
+                } catch (KeyStoreException e) {
+                    LOG
+                            .log(
+                                    Level.SEVERE,
+                                    "Error configuring servlet (could not load keystore).",
+                                    e);
+                    throw new ServletException("Could not load keystore.");
+                } catch (NoSuchAlgorithmException e) {
+                    LOG
+                            .log(
+                                    Level.SEVERE,
+                                    "Error configuring servlet (could not load keystore).",
+                                    e);
+                    throw new ServletException("Could not load keystore.");
+                } catch (CertificateException e) {
+                    LOG
+                            .log(
+                                    Level.SEVERE,
+                                    "Error configuring servlet (could not load keystore).",
+                                    e);
+                    throw new ServletException("Could not load keystore.");
+                } catch (IOException e) {
+                    LOG
+                            .log(
+                                    Level.SEVERE,
+                                    "Error configuring servlet (could not load keystore).",
+                                    e);
+                    throw new ServletException("Could not load keystore.");
+                }
+            }
+
+            try {
+                if (alias == null) {
+                    Enumeration<String> aliases = keyStore.aliases();
+                    while (aliases.hasMoreElements()) {
+                        String tempAlias = aliases.nextElement();
+                        if (keyStore.isKeyEntry(tempAlias)) {
+                            alias = tempAlias;
+                            break;
+                        }
                     }
                 }
-            } catch (FileNotFoundException e) {
-                throw new ServletException("Could not load keystore: " + e);
+                if (alias == null) {
+                    LOG
+                            .log(
+                                    Level.SEVERE,
+                                    "Error configuring servlet, invalid keystore configuration: alias unspecified or couldn't find key at alias: "
+                                            + alias);
+                    throw new ServletException(
+                            "Invalid keystore configuration: alias unspecified or couldn't find key at alias: "
+                                    + alias);
+                }
+                if (privateKey == null) {
+                    privateKey = (PrivateKey) keyStore.getKey(alias,
+                            keyPasswordArray);
+                }
+                if (certificate == null) {
+                    certificate = (X509Certificate) keyStore
+                            .getCertificate(alias);
+                }
+            } catch (UnrecoverableKeyException e) {
+                LOG.log(Level.SEVERE,
+                        "Error configuring servlet (could not load keystore).",
+                        e);
+                throw new ServletException("Could not load keystore.");
             } catch (KeyStoreException e) {
-                throw new ServletException("Could not load keystore: " + e);
+                LOG.log(Level.SEVERE,
+                        "Error configuring servlet (could not load keystore).",
+                        e);
+                throw new ServletException("Could not load keystore.");
             } catch (NoSuchAlgorithmException e) {
-                throw new ServletException("Could not load keystore: " + e);
-            } catch (CertificateException e) {
-                throw new ServletException("Could not load keystore: " + e);
-            } catch (IOException e) {
-                throw new ServletException("Could not load keystore: " + e);
+                LOG.log(Level.SEVERE,
+                        "Error configuring servlet (could not load keystore).",
+                        e);
+                throw new ServletException("Could not load keystore.");
             }
         }
 
-        try {
-            if (alias == null) {
-                Enumeration<String> aliases = keyStore.aliases();
-                while (aliases.hasMoreElements()) {
-                    String tempAlias = aliases.nextElement();
-                    if (keyStore.isKeyEntry(tempAlias)) {
-                        alias = tempAlias;
-                        break;
-                    }
-                }
-            }
-            if (alias == null) {
-                throw new ServletException(
-                        "Invalid keystore configuration: alias unspecified or couldn't find the alias.");
-            }
-
-            X509Certificate certificate = (X509Certificate) keyStore
-                    .getCertificate(alias);
-            PrivateKey privateKey = (PrivateKey) keyStore.getKey(alias,
-                    keyPassword != null ? keyPassword.toCharArray() : null);
-
-            setIssuerName(issuerName);
-            setCaPrivKey(privateKey);
-            setCaCertificate(certificate);
-        } catch (UnrecoverableKeyException e) {
-            throw new ServletException("Could not load keystore.");
-        } catch (KeyStoreException e) {
-            throw new ServletException("Could not load keystore.");
-        } catch (NoSuchAlgorithmException e) {
-            throw new ServletException("Could not load keystore.");
-        }
+        setCaCertificate(certificate);
+        setCaPrivKey(privateKey);
+        setIssuerName(issuerName);
     }
 }
