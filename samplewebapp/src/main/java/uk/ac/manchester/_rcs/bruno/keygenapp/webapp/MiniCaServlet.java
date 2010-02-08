@@ -30,7 +30,7 @@ POSSIBILITY OF SUCH DAMAGE.
   Author........: Bruno Harbulot
  
  */
-package uk.ac.manchester.rcs.bruno.keygenapp.webapp;
+package uk.ac.manchester._rcs.bruno.keygenapp.webapp;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -52,8 +52,8 @@ import org.bouncycastle.asn1.DERSequence;
 import org.bouncycastle.asn1.x509.X509Name;
 import org.bouncycastle.openssl.PEMWriter;
 
-import uk.ac.manchester.rcs.bruno.keygenapp.base.Configuration;
-import uk.ac.manchester.rcs.bruno.keygenapp.base.MiniCaCertGen;
+import uk.ac.manchester._rcs.bruno.keygenapp.base.Configuration;
+import uk.ac.manchester._rcs.bruno.keygenapp.base.MiniCaCertGen;
 
 public class MiniCaServlet extends HttpServlet {
     private static final long serialVersionUID = -1103006284486954147L;

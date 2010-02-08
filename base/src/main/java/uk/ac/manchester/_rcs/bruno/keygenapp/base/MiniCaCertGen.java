@@ -30,7 +30,7 @@ POSSIBILITY OF SUCH DAMAGE.
   Author........: Bruno Harbulot
  
  */
-package uk.ac.manchester.rcs.bruno.keygenapp.base;
+package uk.ac.manchester._rcs.bruno.keygenapp.base;
 
 import java.io.IOException;
 import java.io.StringReader;

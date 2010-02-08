@@ -7,7 +7,7 @@
 	<servlet>
 		<servlet-name>minica</servlet-name>
 		<servlet-class>
-			uk.ac.manchester.rcs.bruno.keygenapp.webapp.MiniCaServlet</servlet-class>
+			uk.ac.manchester._rcs.bruno.keygenapp.webapp.MiniCaServlet</servlet-class>
 
 		<init-param>
 			<param-name>keystoreResourcePath</param-name>
@@ -29,7 +29,6 @@
 			<param-name>issuerName</param-name>
 			<param-value>C=UK,ST=Greater Manchester,O=University of Manchester,OU=Research Computing Services,CN=Dummy Certification Authority</param-value>
 		</init-param>
-
 	</servlet>
 
 	<servlet-mapping>
