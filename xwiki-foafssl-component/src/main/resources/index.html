@@ -24,7 +24,7 @@ Server 2008, you need to configure the following for this to work:</p>
 	trusted root CA certificate afterwards.</li>
 </ul>
 </div>
-<form id="keygenform">
+<form id="keygenform" action="http://localhost:8080/xwiki/bin/view/XWiki/keygen" method="POST">
 <table>
 	<tr>
 		<td>Common Name (to help you identify the certificate):</td>
@@ -37,8 +37,9 @@ Server 2008, you need to configure the following for this to work:</p>
 	<tr>
 		<td>Key strength:</td>
 		<td id="keystrenghtd"><keygen id="spkac" name="spkac"
-			challenge="TheChallenge1" /></td>
+			challenge="TheChallenge1" /> </td>
 	</tr>
 </table>
 <input id="keygensubmit" type="submit" /></form>
+</body>
 </html>

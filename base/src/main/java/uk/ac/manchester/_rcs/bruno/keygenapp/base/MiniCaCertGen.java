@@ -370,8 +370,8 @@ public class MiniCaCertGen {
      *            CA public key
      * @param caPrivKey
      *            CA private key
-     * @param spkacData
-     *            SPKAC data obtained from the KEYGEN tag
+     * @param pemCsr
+     *            CSR data obtained from the browser
      * @param subject
      *            subject (and issuer) DN for this certificate, RFC 2253 format
      *            preferred.
