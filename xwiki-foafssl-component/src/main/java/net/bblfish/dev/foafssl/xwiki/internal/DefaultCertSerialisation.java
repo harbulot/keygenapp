@@ -34,6 +34,7 @@ package net.bblfish.dev.foafssl.xwiki.internal;
 
 import net.bblfish.dev.foafssl.xwiki.CertSerialisation;
 
+import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
@@ -62,8 +63,14 @@ public class DefaultCertSerialisation implements CertSerialisation {
         return mime;
     }
 
-    public void write(OutputStream out) throws IOException {
+    public void writeTo(OutputStream out) throws IOException {
         out.write(sz);
+    }
+
+    public void writeTo(ServletResponse response) throws IOException {
+        response.setContentLength(sz.length);
+        response.setContentType(getMimeType());
+        writeTo(response.getOutputStream());
     }
 
     /**
@@ -71,7 +78,7 @@ public class DefaultCertSerialisation implements CertSerialisation {
      * @return a string representation of the output
      */
     public String toString() {
-        return "DO NOT USE FOR OUTPUT! use write(OutputStream out) instead!\r\n"+
+        return "DO NOT USE FOR OUTPUT! use write(ServletResponse res) instead!\r\n"+
                 new String(sz, Charset.forName("UTF-8"));
 
     }

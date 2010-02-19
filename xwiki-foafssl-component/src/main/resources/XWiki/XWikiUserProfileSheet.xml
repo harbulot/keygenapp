@@ -12,9 +12,9 @@
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
 <creationDate>1262856167000</creationDate>
-<date>1265709130000</date>
-<contentUpdateDate>1265709130000</contentUpdateDate>
-<version>8.1</version>
+<date>1266589377000</date>
+<contentUpdateDate>1266589377000</contentUpdateDate>
+<version>6.1</version>
 <title></title>
 <template></template>
 <defaultTemplate></defaultTemplate>
@@ -52,7 +52,7 @@
 <name>XWiki.XWikiUserProfileSheet</name>
 <number>0</number>
 <className>XWiki.TagClass</className>
-<guid>4afa7b21-e147-47fa-b618-ca069557b008</guid>
+<guid>981b703e-1d9c-4bc6-a425-b3ef2615af6e</guid>
 <property>
 <tags/>
 </property>
@@ -115,8 +115,8 @@ $xwiki.ssx.use('Main.Dashboard')##
       &lt;/dl&gt;
       &lt;h1&gt;Public Keys&lt;/h3&gt;
       &lt;p&gt;A list of keys&lt;/p&gt;
-     #if($context.action != 'view' &amp;&amp; $hasEdit)
-     &lt;form id="keygenform"&gt;
+     #if($hasEdit)
+     &lt;form id="keygenform" action="/xwiki/bin/view/XWiki/keygen" method="post"&gt;
        &lt;table&gt;
 	 &lt;tr&gt;
 		&lt;td&gt;Common Name (to help you identify the certificate):&lt;/td&gt;
@@ -129,7 +129,7 @@ $xwiki.ssx.use('Main.Dashboard')##
 	 &lt;tr&gt;
 		&lt;td&gt;Key strength:&lt;/td&gt;
 		&lt;td id="keystrenghtd"&gt;&lt;keygen id="spkac" name="spkac"
-			challenge="TheChallenge1" /&gt;&lt;/td&gt;
+			challenge="TheChallenge1"/&gt;&lt;/td&gt;
 	 &lt;/tr&gt;
        &lt;/table&gt;
        &lt;input id="keygensubmit" type="submit" /&gt;

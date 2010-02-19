@@ -32,6 +32,7 @@
 
 package net.bblfish.dev.foafssl.xwiki;
 
+import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -60,7 +61,14 @@ public interface CertSerialisation {
     /**
      * @param out the output stream to write this serialisation too
      */
-    void write(OutputStream out) throws IOException;
+    void writeTo(OutputStream out) throws IOException;
+
+    /**
+     * Write the full response the response object, including headers, such as content length and mime type
+     * Clients should use this method, as it reduces the risk of making a mistake
+     * @param response
+     */
+    void writeTo(ServletResponse response) throws IOException;
 
 
 
