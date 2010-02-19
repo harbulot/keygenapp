@@ -1,0 +1,134 @@
+<html>
+<body>
+<!-- It is not nice to have the code in the xar, as it munges all the html, and so makes it unreadable -->
+{{velocity}}
+#set($obj = $doc.getObject("XWiki.XWikiUsers"))
+#if(!$obj)
+= $msg.get('xe.admin.users.sheet') =
+
+{{info}}$msg.get('xe.admin.users.applyonusers'){{/info}}
+#else
+{{html clean="false" wiki="true"}}
+#set($username = $xwiki.getUserName($doc.fullName, false))
+= $msg.get('platform.core.profile.title', [$username]) =
+#if($context.action == 'view')
+  <div xmlns:foaf="http:~/~/xmlns.com/foaf/0.1/"
+       xmlns:dct="http:~/~/purl.org/dc/terms/"
+       xmlns:contact="http:~/~/www.w3.org/2000/10/swap/pim/contact#"
+       xmlns:cert="http:~/~/www.w3.org/ns/auth/cert#"
+       xmlns:rsa="http:~/~/www.w3.org/ns/auth/rsa#"
+       about="#me" typeof="foaf:Person"
+       class="vcard">
+  <span typeof="foaf:OnlineAccount" property="foaf:accountName" class="fn hidden">$username</span>
+#end
+$xwiki.ssx.use("XWiki.XWikiUserSheet")##
+$xwiki.ssx.use('Main.Dashboard')##
+<div class="dashboard dashboard${context.action}">
+  <div class="dashboardleft">
+    <div class="userInfo">
+      #if($context.action == 'view' && $hasEdit)
+        <div class="editProfileCategory"><a href="$doc.getURL('inline', 'category=profile')"><span class="hidden">$msg.get('platform.core.profile.category.profile.edit')</span></a></div>
+      #end
+      ## Please do not insert extra empty lines here (as it affects the validity of the rendered xhtml)
+      <h1>$msg.get('platform.core.profile.section.personal')</h1>
+      <dl>
+        <dt class="label"><label>$msg.get('platform.core.profile.firstname')</label></dt>
+        <dd #if($context.action == 'view')property="foaf:firstName" class="given-name"#end>$doc.display('first_name')</dd>
+        <dt class="label"><label>$msg.get('platform.core.profile.lastname')</label></dt>
+        <dd #if($context.action == 'view')property="foaf:familyName" class="family-name"#end>$doc.display('last_name')</dd>
+        #if(($obj.getProperty('company') && $obj.getProperty('company').getValue() != '') || $context.action == 'inline')
+          <dt class="label"><label>$msg.get('platform.core.profile.company')</label></dt>
+          <dd #if($context.action == 'view')class="org"#end>$doc.display('company')</dd>
+        #end
+        #if(($obj.getProperty('comment') && $obj.getProperty('comment').getValue() != '') || $context.action == 'inline')
+          <dt class="label"><label>$msg.get('platform.core.profile.about')</label></dt>
+          <dd #if($context.action == 'view')property="dct:description" class="note"#end>$doc.display('comment')</dd>
+        #end
+      </dl>
+      <h1>$msg.get('platform.core.profile.section.contact')</h1>
+      <dl>
+        ## For security reasons do not display emails by default
+        ## #if(($obj.getProperty('email') && $obj.getProperty('email').getValue() != '') || $context.action == 'inline')
+        ## <dt class="label"><label>$msg.get('platform.core.profile.email')</label></dt>
+        ## <dd #if($context.action=="view")class="email"#end>#if($action == "inline")$doc.display('email')#else #set($discard = $doc.display('email'))#obfuscate($discard)#end</dd>
+        ## #end
+        <dt class="label"><label>$msg.get('platform.core.profile.phone')</label></dt>
+        <dd #if($context.action == 'view')class="tel"#end><a rel="foaf:phone" href="tel:$doc.display('phone')">$doc.display('phone')</a></dd>
+        <dt class="label"><label>$msg.get('platform.core.profile.address')</label></dt>
+        <dd #if($context.action == 'view')class="adr"#end>$doc.display('address')</dd>
+      </dl>
+      <h1>Public Keys</h3>
+      <p>Existing keys</p>
+     <table>
+     #foreach ($key in $doc.getObjects("XWiki.foafssl_RSAPubKey") )
+     <tr rev="cert:identity"><td>Cert name</td><td>$!key.name</td></tr>
+     <tr><td>hex modulus</td>
+         <td rel="rsa:modulus"><span property="cert:hex">$!key.hexModulus</span></td>
+     </tr>
+     <tr><td>exponent</td>
+         <td rel="rsa:exponent"><span property="cert:int">$!key.intExponent</span></td>
+     </tr>
+     #end
+     </table>
+     #if($hasEdit)
+{{html wiki=false}}
+     <form id="keygenform" action="/xwiki/bin/view/XWiki/keygen" method="post">
+       <table>
+  <tr>
+  <td>Common Name (to help you identify the certificate):</td>
+  <td><input name="cn" id="cn" type="text" value="" /></td>
+  </tr>
+  <tr>
+  <td>WebID:</td>
+  <td><input name="webid" id="webid" type="hidden" value="${doc.getExternalURL()}#me">${doc.getExternalURL()}#me</input></td>
+  </tr>
+  <tr>
+  <td>Key strength:</td>
+  <td id="keystrenghtd"><keygen id="spkac" name="spkac"
+   challenge="TheChallenge1"/></td>
+  </tr>
+       </table>
+       <input id="keygensubmit" type="submit" />
+     </form>
+{{/html}}
+     #end
+      #set($hasBlog = ($obj.getProperty('blog') && $obj.getProperty('blog').getValue() != ''))
+      #set($hasBlogFeed = ($obj.getProperty('blogfeed') && $obj.getProperty('blogfeed').getValue() != ''))
+      #if($hasBlog || $hasBlogFeed || $context.action == 'inline')
+       <h1>$msg.get('platform.core.profile.section.links')</h1>
+        <dl>
+          #if($hasBlog || $context.action == 'inline')
+            <dt class="label"><label>$msg.get('platform.core.profile.blog')</label></dt>
+            <dd>$doc.display('blog')</dd>
+          #end
+          #if($hasBlogFeed || $context.action == 'inline')
+            <dt class="label"><label>$msg.get('platform.core.profile.blogFeed')</label></dt>
+            <dd>$doc.display('blogfeed')</dd>
+          #end
+        </dl>
+      #end
+    </div>
+  </div>
+  <div class="dashboardright">
+    #if ($context.action == 'view')
+      <div class="userRecentChanges">
+        <h1>$msg.get('platform.core.profile.section.recentChanges')</h1>
+        {{/html}}
+        #set ($rcAuthor = [$doc.fullName])
+        #set ($rcChangesNb = 10)
+        {{include document="Main.RecentChanges"/}}
+        {{html clean="false"}}
+      </div>
+    #end
+  </div>
+  <div class="dashboardspacer">&nbsp;</div>
+</div>
+#if($context.action == 'view')
+  ## Close the vcard
+  </div>
+#end
+{{/html}}
+#end
+{{/velocity}}
+</body>
+</html>

@@ -63,11 +63,11 @@
 #end
 
 #set( $spkac = $request.spkac )
-
 #set( $foafssl = $services.foafssl )
 
 #if( $spkac )
   #set( $cert = $foafssl.createFromSpkac( $request.spkac ) )
+  #set( $pk = $cert.getSubjectPublicKey() )
 
   $cert.setSubjectWebID( $request.webid )
   $cert.setSubjectCommonName( $request.cn )
@@ -76,7 +76,17 @@
   #set($s = $cert.getSerialisation())
 
   $s.writeTo( $response )
+
+  ## create and save the public key to the user's profile page
+  #set( $homepage = $xwiki.getDocument($context.user) )
+  #set( $rsaKey = $homepage.newObject("XWiki.foafssl_RSAPubKey"))
+  $!rsaKey.set("hexModulus", $pk.getHexModulus() )
+  $!rsaKey.set("intExponent", $pk.getIntExponent() )
+  $!rsaKey.set("name", $request.cn )
+  $!homepage.save()
+
   $context.setFinished(true)
 #end
+
 {{/velocity}}</content>
 </xwikidoc>
