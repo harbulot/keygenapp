@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager" verified="true">
-    <list default="true" readonly="true" id="95d184f0-1291-41bf-a18d-322aabc48c46" name="Default" comment="Added the RSAPubKeyClass&#10;Renamed keygen to foafssl_createcert&#10;foafssl_createcert is not a lot more friendly&#10;DefaultCertificate.java and Certificate.java&#10;  renamed method from setDuration... to addDuration. The now take strings as that means it works better with velocity&#10;  the getEndDate method is now public so that it can be displayed in a wiki &#10;XwikiUserProfileSheet:&#10;  - looks better (it does not show the full key, only parts of it&#10;  - has correct rdfa that does indeed describe the user's page&#10;  - other improvements">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/XWiki/foafssl_create_cert.html" />
+    <list default="true" readonly="true" id="95d184f0-1291-41bf-a18d-322aabc48c46" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/bblfish/dev/foafssl/xwiki/Certificate.java" afterPath="$PROJECT_DIR$/src/main/java/net/bblfish/dev/foafssl/xwiki/Certificate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/XWiki/XWikiUserProfileSheet.html" afterPath="$PROJECT_DIR$/src/main/resources/XWiki/XWikiUserProfileSheet.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/XWiki/foafssl_create_cert.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/XWiki/foafssl_RSAPubKey.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/bblfish/dev/foafssl/xwiki/CertificateService.java" afterPath="$PROJECT_DIR$/src/main/java/net/bblfish/dev/foafssl/xwiki/CertificateService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/DefaultCertificate.java" afterPath="$PROJECT_DIR$/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/DefaultCertificate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateServiceTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/XWiki/keygen.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/XWiki/foafssl_create_cert.html" afterPath="$PROJECT_DIR$/src/main/resources/XWiki/foafssl_create_cert.html" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="xwiki-foafssl-component.iws" />
@@ -723,12 +720,12 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32964602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32964602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24954017" sideWeight="0.6626106" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24954017" sideWeight="0.6626106" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
