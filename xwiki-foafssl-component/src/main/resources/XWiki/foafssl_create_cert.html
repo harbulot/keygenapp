@@ -4,8 +4,16 @@
 #set( $homepage = $xwiki.getDocument($context.user) )
 #set( $addKey = true )
 
+#if(! $!xwiki.exists("XWiki.foafssl_RSAPubKey"))
 
-#if ( $request.getParameterMap().isEmpty())
+You need to create the XWiki.foafssl_RSAPubKey class
+It should come with this installation, in a XAR file. If not you can [[create it here>> XWiki.foafssl_RSAPubKey]] with the following properties:
+ * A hexModulus TextArea
+ * An intExponent NumberField
+ * A name String Field
+ * A validTo and validFrom date Field
+
+#elseif ( $request.getParameterMap().isEmpty())
  {{html clean="false"}}
  <form id="keygenform" action="" method="post">
   <table width="95%">

@@ -38,8 +38,6 @@ import net.bblfish.dev.foafssl.xwiki.internal.CertificateScriptService;
 import org.bouncycastle.asn1.x509.X509Name;
 import org.xwiki.component.phase.InitializationException;
 
-import java.io.OutputStream;
-
 
 /**
  * Tests for the {@link net.bblfish.dev.foafssl.xwiki.CertificateService} component.
@@ -74,7 +72,7 @@ public class CertificateServiceTest extends TestCase {
                 "0b9c9716a005572c115af403b4160c62daa929ccaf691a4a2910be969593\r\n" +
                 "2236ef39281fcb85\r\n",((RSAPubKey) spk).getHexModulus());
         assertEquals("int exponent is not correct","65537",((RSAPubKey) spk).getIntExponent());
-        cert.setDurationInDays(3);
+        cert.addDurationInDays("3");
         cert.setSubjectCommonName("Test");
         cert.setSubjectWebID("http://test.com/#me");
         CertSerialisation certByte = cert.getSerialisation();

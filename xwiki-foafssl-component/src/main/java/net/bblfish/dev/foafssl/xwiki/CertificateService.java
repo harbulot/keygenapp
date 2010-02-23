@@ -47,7 +47,7 @@ import java.security.InvalidParameterException;
  */
 @ComponentRole
 public interface CertificateService {
-    static final String issuer = "O=FOAF\\+SSL, CN=NOT A CERTIFICATION AUTHORITY!"; //the exact name for the FOAF+SSL issuer is still being decided
+    static final String issuer = "O=FOAF\\+SSL, OU=The Community of Self Signers, CN=Not a Certification Authority"; //the exact name for the FOAF+SSL issuer is still being decided
                                           
     /**
      * Creates a certificate stub from the given <a href="http://en.wikipedia.org/wiki/PEM">PEM</a> <a href="http://en.wikipedia.org/wiki/Certification_request">CSR</a>.

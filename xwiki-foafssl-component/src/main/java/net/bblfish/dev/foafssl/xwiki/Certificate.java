@@ -77,6 +77,12 @@ public interface Certificate {
     public void setStartDate(Date startDate);
 
     /**
+     *
+     * @return the start validity date for the certificate
+     */
+    public Date getStartDate();
+
+    /**
      * set the end date of validity of the certificate.
      * If unset it will be one year from start date, if the duration is not set.
      * Or the duration in days and hours from the start date.
@@ -88,9 +94,17 @@ public interface Certificate {
 
     /**
      *
-     * @param days set the duration of the certificate in days. Easier to set than the end date.
+     * @return end validity date for the certificate
      */
-    public void setDurationInDays(int days);
+    public Date getEndDate();
+
+
+    /**
+     *  set duration of cert in days. Easier to set than the end date.
+     *
+     * @param days the duration of the certificate in days, as an integer string.
+     */
+    public void addDurationInDays(String days);
 
 
     /**
@@ -98,9 +112,9 @@ public interface Certificate {
      * Useful for short durations ( for public kiosks for example )
      * If days is set then this will be added to the days.
      *
-     * @param hours partial hours are possible
+     * @param hours as floats, encoded as strings (it is easier to get a string from velocity). Partial hours are possible
      */
-    public void setDurationInHours(float hours);
+    public void addDurationInHours(String hours);
 
 
     /**

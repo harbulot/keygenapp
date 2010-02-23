@@ -103,13 +103,25 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
     }
 
 
-    public void setDurationInDays(int days) {
-        this.durationInDays = days;
+    public void addDurationInDays(String days) {
+        try {
+            Float d = Float.valueOf(days);
+            this.durationInDays += d.intValue();
+            float remainder = (d - durationInDays);
+            this.durationInHours += remainder*24;
+        } catch (NumberFormatException e) {
+          getLogger().warn("unable to interpret the number of days passed as a float "+days);
+        }
+        //this.durationInDays = days;
     }
 
-    public void setDurationInHours(float hours) {
-        this.durationInHours = hours;
-    }
+    public void addDurationInHours(String hours) {
+        try {
+             this.durationInHours =  Float.valueOf(hours);
+         } catch (NumberFormatException e) {
+           getLogger().warn("unable to interpret the number of hours passed as a float"+hours);
+         }
+     }
 
     public PubKey getSubjectPublicKey() {
         return subjectPubKey;
@@ -155,6 +167,8 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
 
         subjectDnOids.add(X509Name.O);
         subjectDnValues.add("FOAF+SSL");
+        subjectDnOids.add(X509Name.OU);
+        subjectDnValues.add("The Community Of Self Signers");        
         subjectDnOids.add(X509Name.UID);
         subjectDnValues.add(webId);
         subjectDnOids.add(X509Name.CN);
@@ -262,7 +276,7 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
 
     }
 
-    private Date getEndDate() {
+    public Date getEndDate() {
         if (endDate == null) {
             long endtime;
             if (durationInDays != 0 || durationInHours != 0) {
