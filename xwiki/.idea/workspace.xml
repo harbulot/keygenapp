@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager" verified="true">
-    <list default="true" readonly="true" id="72397336-9c5f-48eb-b1b2-0ddd13161a97" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" readonly="true" id="72397336-9c5f-48eb-b1b2-0ddd13161a97" name="Default" comment="" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="xwiki.iws" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -83,7 +81,7 @@
       <file leaf-file-name="CertificateScriptService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="160" column="0" selection-start="6803" selection-end="6803" vertical-scroll-proportion="0.021015761">
+            <state line="160" column="0" selection-start="6803" selection-end="6803" vertical-scroll-proportion="0.022181146">
               <folding />
             </state>
           </provider>
@@ -656,7 +654,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="0" selection-start="6803" selection-end="6803" vertical-scroll-proportion="0.021015761">
+        <state line="160" column="0" selection-start="6803" selection-end="6803" vertical-scroll-proportion="0.022181146">
           <folding />
         </state>
       </provider>
