@@ -8,8 +8,8 @@
     <list default="true" readonly="true" id="b5c6368b-0495-4f2a-a327-4ad9ad3fb051" name="Default" comment="First version of an XWiki Component. Is good enough to create a component (though the velocity script to do so is not in here yet)">
       <change type="DELETED" beforePath="$PROJECT_DIR$/xwiki/foafssl-application/src/main/resources/FoafSsl/CreateCert.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xwiki/README.txt" afterPath="$PROJECT_DIR$/xwiki/README.txt" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/xwiki/foafssl-application/src/main/resources/FoafSsl/XWikiUserProfileSheet.xml" afterPath="$PROJECT_DIR$/xwiki/foafssl-application/src/main/resources/WebId/XWikiUserProfileSheet.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xwiki/README.txt" afterPath="$PROJECT_DIR$/xwiki/README.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xwiki/.idea/workspace.xml" afterPath="$PROJECT_DIR$/xwiki/.idea/workspace.xml" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/xwiki/foafssl-application/src/main/resources/FoafSsl/RSAPubKeyClass.xml" afterPath="$PROJECT_DIR$/xwiki/foafssl-application/src/main/resources/WebId/RSAPubKeyClass.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xwiki/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java" afterPath="$PROJECT_DIR$/xwiki/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java" />
