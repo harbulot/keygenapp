@@ -2,50 +2,13 @@
 <project version="4">
   <component name="ChangeListManager" verified="true">
     <list default="true" readonly="true" id="72397336-9c5f-48eb-b1b2-0ddd13161a97" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xwiki_platform_xwiki_core_component_api_2_3_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/DefaultCertificate.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/keygenapp.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/PubKey.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/DefaultCertSerialisation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_livetribe_livetribe_jsr223_2_0_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_3_8_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/libraries/Maven__bouncycastle_bcprov_jdk16_141.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/RSAPubKeyClass.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/libraries/Maven__org_xwiki_platform_xwiki_core_script_2_3_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/libraries/Maven__junit_junit_3_8_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/resources/META-INF/components.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/RSAPubKey.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/Certificate.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/libraries/Maven__org_xwiki_platform_xwiki_core_context_2_3_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/resources/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/test/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateServiceTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__bouncycastle_bcprov_jdk16_141.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xwiki_platform_xwiki_core_context_2_3_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/xwiki-foafssl-component.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-application/xwiki-application-foafssl.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/CertSerialisation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/CertificateService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/resources/cacert.p12" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/libraries/Maven__org_livetribe_livetribe_jsr223_2_0_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/test/java/net/bblfish/dev/foafssl/xwiki/internal/DefaultRSAPubKeyTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/DefaultPubKey.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/ant.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/CreateCert.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xwiki_platform_xwiki_core_script_2_3_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-component/.idea/libraries/Maven__org_xwiki_platform_xwiki_core_component_api_2_3_SNAPSHOT.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/CreateCert.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/XWikiUserProfileSheet.xml" afterPath="$PROJECT_DIR$/foafssl-application/src/main/resources/WebId/XWikiUserProfileSheet.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.txt" afterPath="$PROJECT_DIR$/README.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/RSAPubKeyClass.xml" afterPath="$PROJECT_DIR$/foafssl-application/src/main/resources/WebId/RSAPubKeyClass.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java" afterPath="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/foafssl-application/src/main/resources/WebId/CreateCert.xml" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="xwiki.iws" />
@@ -114,6 +77,42 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CertificateService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/CertificateService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="48" column="17" selection-start="2215" selection-end="2215" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CertificateScriptService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="160" column="0" selection-start="6803" selection-end="6803" vertical-scroll-proportion="0.01369863">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultCertSerialisation.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/DefaultCertSerialisation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="13" selection-start="2079" selection-end="2079" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/resources/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/foafssl-application/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -141,37 +140,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.txt" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="README.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="120" selection-start="1270" selection-end="1291" vertical-scroll-proportion="0.49315068">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RSAPubKeyClass.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/RSAPubKeyClass.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="5" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XWikiUserProfileSheet.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/XWikiUserProfileSheet.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="45" selection-start="6522" selection-end="6522" vertical-scroll-proportion="-19.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateCert.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/CreateCert.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="87" selection-start="4883" selection-end="4887" vertical-scroll-proportion="-4.6923075">
+            <state line="34" column="64" selection-start="1230" selection-end="1230" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -197,6 +169,7 @@
         <option value="$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/CreateCert.xml" />
         <option value="$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/XWikiUserProfileSheet.xml" />
         <option value="$PROJECT_DIR$/README.txt" />
+        <option value="$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java" />
       </list>
     </option>
   </component>
@@ -242,8 +215,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
@@ -316,6 +287,40 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xwiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xwiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="foafssl-component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="META-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -344,6 +349,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="xwiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xwiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xwiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="foafssl-component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xwiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="internal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -386,13 +425,11 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FoafSsl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -511,24 +548,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="1024" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24954017" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24954017" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -566,16 +603,16 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/Certificate.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="39" selection-start="4" selection-end="1654" vertical-scroll-proportion="0.0">
+        <state line="50" column="22" selection-start="1564" selection-end="1564" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/CertificateService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="22" selection-start="1564" selection-end="1564" vertical-scroll-proportion="0.0">
+        <state line="48" column="17" selection-start="2215" selection-end="2215" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -587,6 +624,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/Certificate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="39" selection-start="4" selection-end="1654" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/foafssl-component/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="42" column="16" selection-start="2262" selection-end="2262" vertical-scroll-proportion="0.0">
@@ -594,30 +638,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/RSAPubKeyClass.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="5" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/CreateCert.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="87" selection-start="4883" selection-end="4887" vertical-scroll-proportion="-4.6923075">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/foafssl-application/src/main/resources/FoafSsl/XWikiUserProfileSheet.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="45" selection-start="6522" selection-end="6522" vertical-scroll-proportion="-19.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="120" selection-start="1270" selection-end="1291" vertical-scroll-proportion="0.49315068">
+        <state line="34" column="64" selection-start="1230" selection-end="1230" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/resources/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/DefaultCertSerialisation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="13" selection-start="2079" selection-end="2079" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/foafssl-component/src/main/java/net/bblfish/dev/foafssl/xwiki/internal/CertificateScriptService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="0" selection-start="6803" selection-end="6803" vertical-scroll-proportion="0.01369863">
           <folding />
         </state>
       </provider>

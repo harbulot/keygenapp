@@ -97,7 +97,6 @@ public class CertificateScriptService extends AbstractLogEnabled implements Scri
         getLogger().info("initializing " + this.getClass().getCanonicalName());
         System.out.println("in " + this.getClass().getCanonicalName() + ".initialize()");
         URL certFile = CertificateScriptService.class.getResource("/cacert.p12");
-        System.out.println("cert file=" + certFile);
         InputStream in;
         try {
             in = certFile.openStream();
@@ -159,10 +158,10 @@ public class CertificateScriptService extends AbstractLogEnabled implements Scri
             throw new InitializationException("problem getting certificate with alias " + alias + "from keystore.", e);
         }
         getLogger().info("Initialization of " + this.getClass().getCanonicalName() + " successfull.");
-        System.out.println("out " + this.getClass().getCanonicalName() + ".initialize()");
     }
 
     public Certificate createFromPEM(String pemCsr) {
+        getLogger().info("in "+this.getClass().toString()+".createFromPEM()");
         PEMReader pemReader = new PEMReader(new StringReader(pemCsr));
         Object pemObject;
         try {
@@ -188,19 +187,15 @@ public class CertificateScriptService extends AbstractLogEnabled implements Scri
     }
 
     public Certificate createFromSpkac(String spkac) throws InvalidParameterException {
-        System.out.println("in createFromSpkac");
-        System.out.println("spkac=" + spkac);
         if (spkac == null) throw new InvalidParameterException("SPKAC parameter is null");
         try {
             NetscapeCertRequest certRequest = new NetscapeCertRequest(Base64.decode(spkac));
             DefaultCertificate cert = new DefaultCertificate(this);
             cert.setSubjectPublicKey(create(certRequest.getPublicKey()));
-            System.out.println("leaving createFromSpkac, returning cert " + cert);
             return cert;
         } catch (IOException e) {
             getLogger().error("how can an IOError occur when reading a string?", e);
         }
-        System.out.println("leaving createFromSpkac with null value");
         return null;
     }
 

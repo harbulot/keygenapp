@@ -32,6 +32,12 @@ To add the functionality to XWiki do the following. $THIS refers to the location
     $THIS/foafssl-application/target/foafssl-application.xar
   - click on the imported link that appears, and import the xar
 
- 3.
+ 4. Change the User's Profile template so that they display RDFa
 
- To edit XWiki.XWikiUserSheet so that the call to XWiki.XWikiUserProfileSheet is replaced by WebId.XWikiUserProfileSheet
+    Until this is integrated more closely into XWiki it is easiest to do this
+    by using the WebId version of XWikiUserProfileSheet
+
+  - Edit XWiki.XWikiUserSheet so that the call to XWiki.XWikiUserProfileSheet
+    is replaced by WebId.XWikiUserProfileSheet
+
+   This way, it is easy to switch back in case of a problem.
