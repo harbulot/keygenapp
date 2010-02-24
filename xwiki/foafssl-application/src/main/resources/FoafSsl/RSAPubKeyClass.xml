@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xwikidoc>
-<web>XWiki</web>
-<name>foafssl_RSAPubKey</name>
+<web>WebId</web>
+<name>RSAPubKeyClass</name>
 <language></language>
 <defaultLanguage></defaultLanguage>
 <translation>0</translation>
@@ -11,20 +11,20 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1266595473000</creationDate>
-<date>1266753649000</date>
-<contentUpdateDate>1266753639000</contentUpdateDate>
-<version>1.6</version>
+<creationDate>1267010049000</creationDate>
+<date>1267010574000</date>
+<contentUpdateDate>1267010574000</contentUpdateDate>
+<version>1.8</version>
 <title></title>
 <template></template>
 <defaultTemplate></defaultTemplate>
 <validationScript></validationScript>
-<comment>Added class property</comment>
+<comment>Updated class property</comment>
 <minorEdit>true</minorEdit>
 <syntaxId>xwiki/2.0</syntaxId>
 <hidden>false</hidden>
 <class>
-<name>XWiki.foafssl_RSAPubKey</name>
+<name>WebId.RSAPubKeyClass</name>
 <customClass></customClass>
 <customMapping></customMapping>
 <defaultViewSheet></defaultViewSheet>
@@ -39,7 +39,7 @@
 <picker>0</picker>
 <prettyName>hexModulus</prettyName>
 <rows>5</rows>
-<size>60</size>
+<size>40</size>
 <unmodifiable>0</unmodifiable>
 <validationMessage></validationMessage>
 <validationRegExp></validationRegExp>
@@ -52,36 +52,45 @@
 <prettyName>intExponent</prettyName>
 <size>30</size>
 <unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
 <classType>com.xpn.xwiki.objects.classes.NumberClass</classType>
 </intExponent>
 <name>
 <name>name</name>
 <number>3</number>
+<picker>0</picker>
 <prettyName>name</prettyName>
-<size>30</size>
+<size>40</size>
 <unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
 <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
 </name>
 <validFrom>
 <dateFormat>dd/MM/yyyy HH:mm:ss</dateFormat>
 <emptyIsToday>1</emptyIsToday>
 <name>validFrom</name>
-<number>4</number>
+<number>5</number>
 <picker>1</picker>
 <prettyName>validFrom</prettyName>
 <size>20</size>
 <unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
 <classType>com.xpn.xwiki.objects.classes.DateClass</classType>
 </validFrom>
 <validTo>
 <dateFormat>dd/MM/yyyy HH:mm:ss</dateFormat>
 <emptyIsToday>1</emptyIsToday>
 <name>validTo</name>
-<number>5</number>
+<number>4</number>
 <picker>1</picker>
 <prettyName>validTo</prettyName>
 <size>20</size>
 <unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
 <classType>com.xpn.xwiki.objects.classes.DateClass</classType>
 </validTo>
 </class>
@@ -111,10 +120,10 @@
 <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
 </tags>
 </class>
-<name>XWiki.foafssl_RSAPubKey</name>
+<name>WebID.RSAPubKeyClass</name>
 <number>0</number>
 <className>XWiki.TagClass</className>
-<guid>d5a3012a-9a00-4930-b454-fb48bfcd5a42</guid>
+<guid>5b483fef-1c68-4b42-ad71-63bcc837f4f1</guid>
 </object>
 <content>
 </content></xwikidoc>
