@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/foafssl-application/foafssl-application.iml" filepath="$PROJECT_DIR$/foafssl-application/foafssl-application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/foafssl-component/foafssl-component.iml" filepath="$PROJECT_DIR$/foafssl-component/foafssl-component.iml" />
+      <module fileurl="file://$PROJECT_DIR$/keygenapp.iml" filepath="$PROJECT_DIR$/keygenapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/keygenapp.iml" filepath="$PROJECT_DIR$/keygenapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/foafssl-application/xwiki-application-foafssl.iml" filepath="$PROJECT_DIR$/foafssl-application/xwiki-application-foafssl.iml" />
       <module fileurl="file://$PROJECT_DIR$/foafssl-component/xwiki-foafssl-component.iml" filepath="$PROJECT_DIR$/foafssl-component/xwiki-foafssl-component.iml" />

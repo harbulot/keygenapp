@@ -64,9 +64,9 @@
             <version>2.3-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>bouncycastle</groupId>
-            <artifactId>bcprov-jdk16</artifactId>
-            <version>141</version>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15</artifactId>
+            <version>1.45</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>

@@ -21,7 +21,7 @@ To add the functionality to XWiki do the following.
 
    $ export XWIKI_LIB=$XWIKI_HOME/webapps/xwiki/WEB-INF/lib
    $ cp foafssl-component/target/foafssl-component-0.2-SNAPSHOT.jar $XWIKI_LIB/
-   $ cp foafssl-component/target/dependency/bcprov-jdk16-141.jar $XWIKI_LIB/
+   $ cp foafssl-component/target/dependency/bcprov-jdk15-1.45.jar $XWIKI_LIB/
 
 
  3. Install the xar
