@@ -15,9 +15,16 @@
 	<licenses>
 		<license>
 			<name>BSD</name>
-			<url>LICENSE.txt</url>
+			<url>../LICENSE.txt</url>
 			<distribution>repo</distribution>
+            <comments>BSD Licence by the University of Manchester</comments>
 		</license>
+        <license>
+            <name>BSD</name>
+            <url>./LICENSE.txt</url>
+            <distribution>repo</distribution>
+            <comments>BSD Licence by Henry Story at bblfish.net</comments>
+        </license>
 	</licenses>
 
 	<modules>
