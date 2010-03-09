@@ -13,6 +13,8 @@ To add the functionality to XWiki do the following.
 
 1. compile the source with
 
+   #If you wish to deploy to jdk1.6 you may change the org.bouncycastle library in the foafssl-component/pom.xml
+   
    $ cd $THIS
    $ mvn clean package
    $ mvn dependency:copy-dependencies

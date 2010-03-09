@@ -65,7 +65,9 @@
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15</artifactId>
+            <!-- choose which version of the jdk you are deploying to by commenting one of the line below-->
+            <artifactId>bcprov-jdk16</artifactId>
+            <!--artifactId>bcprov-jdk15</artifactId-->
             <version>1.45</version>
         </dependency>
         <dependency>
