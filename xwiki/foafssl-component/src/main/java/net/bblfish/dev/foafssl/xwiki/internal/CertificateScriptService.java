@@ -96,7 +96,6 @@ public class CertificateScriptService extends AbstractLogEnabled implements Scri
 
     public void initialize() throws InitializationException {
         getLogger().info("initializing " + this.getClass().getCanonicalName());
-        System.out.println("in " + this.getClass().getCanonicalName() + ".initialize()");
         URL certFile = CertificateScriptService.class.getResource("/cacert.p12");
         InputStream in;
         try {
