@@ -53,6 +53,7 @@ import java.util.Vector;
 
 /**
  * Default implementation of Certificate
+ *
  * @author Henry Story
  */
 
@@ -106,20 +107,20 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
             Float d = Float.valueOf(days);
             this.durationInDays += d.intValue();
             float remainder = (d - durationInDays);
-            this.durationInHours += remainder*24;
+            this.durationInHours += remainder * 24;
         } catch (NumberFormatException e) {
-          getLogger().warn("unable to interpret the number of days passed as a float "+days);
+            getLogger().warn("unable to interpret the number of days passed as a float " + days);
         }
         //this.durationInDays = days;
     }
 
     public void addDurationInHours(String hours) {
         try {
-             this.durationInHours =  Float.valueOf(hours);
-         } catch (NumberFormatException e) {
-           getLogger().warn("unable to interpret the number of hours passed as a float"+hours);
-         }
-     }
+            this.durationInHours = Float.valueOf(hours);
+        } catch (NumberFormatException e) {
+            getLogger().warn("unable to interpret the number of hours passed as a float" + hours);
+        }
+    }
 
     public PubKey getSubjectPublicKey() {
         return subjectPubKey;
@@ -135,12 +136,13 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
         this.subjectPubKey = pubkey;
     }
 
-    CertSerialisation sz=null;
+    CertSerialisation sz = null;
+
     public CertSerialisation getSerialisation() throws Exception {
         if (cert == null) {
             generate();
         }
-        if (sz==null) {
+        if (sz == null) {
             sz = new DefaultCertSerialisation(cert.getEncoded());
         }
         return sz;
@@ -163,7 +165,7 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
         subjectDnOids.add(X509Name.O);
         subjectDnValues.add("FOAF+SSL");
         subjectDnOids.add(X509Name.OU);
-        subjectDnValues.add("The Community Of Self Signers");        
+        subjectDnValues.add("The Community Of Self Signers");
         subjectDnOids.add(X509Name.UID);
         subjectDnValues.add(webId);
         subjectDnOids.add(X509Name.CN);
@@ -227,18 +229,22 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
 
         /*
          * Adds the authority key identifier extension.
-         */
+         * Bruno pointed out that this is not needed, as the authority's key is never checked in this setup!
+         * so I am commenting it out, to be removed at a later date.
+         *
+
         AuthorityKeyIdentifierStructure authorityKeyIdentifier;
         try {
             authorityKeyIdentifier = new AuthorityKeyIdentifierStructure(
-                    getSubjectPublicKey().getPublicKey());
+                    service.certificate.getPublicKey());
         } catch (InvalidKeyException e) {
             throw new Exception("failed to parse CA cert. This should never happen", e);
         }
 
         certGenerator.addExtension(X509Extensions.AuthorityKeyIdentifier,
                 false, authorityKeyIdentifier);
-
+        */
+        
         /*
          * Adds the subject key identifier extension.
          */
