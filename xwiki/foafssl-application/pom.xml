@@ -45,7 +45,7 @@
 
     <artifactId>foafssl-application</artifactId>
     <name>XWiki Platform - Applications - Foaf+ssl</name>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
     <packaging>xar</packaging>
     <description>FOAF+SSL certificate creation for XWiki</description>
 </project>
