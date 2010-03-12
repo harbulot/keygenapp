@@ -36,7 +36,7 @@
     <parent>
         <groupId>net.bblfish.dev.xwiki.keygenapp</groupId>
         <artifactId>keygenapp</artifactId>
-        <version>0.2-SNAPSHOT</version>
+        <version>0.3-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <!--groupId>net.bblfish.dev.xwiki.keygenapp</groupId-->
