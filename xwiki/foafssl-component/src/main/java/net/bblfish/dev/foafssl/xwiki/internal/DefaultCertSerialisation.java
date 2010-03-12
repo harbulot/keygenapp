@@ -33,6 +33,8 @@
 package net.bblfish.dev.foafssl.xwiki.internal;
 
 import net.bblfish.dev.foafssl.xwiki.CertSerialisation;
+import net.bblfish.dev.foafssl.xwiki.Certificate;
+import org.xwiki.component.logging.AbstractLogEnabled;
 
 import javax.servlet.ServletResponse;
 import java.io.IOException;
@@ -47,28 +49,27 @@ import java.nio.charset.Charset;
  * Time: 7:27:05 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DefaultCertSerialisation implements CertSerialisation {
-    byte[] sz;
+public abstract class DefaultCertSerialisation extends AbstractLogEnabled implements CertSerialisation {
+    private byte[] sz;
     String mime = "application/x-x509-user-cert";
+    Certificate cer;
 
-    DefaultCertSerialisation(byte[] serialisation) {
-        sz = serialisation;
+    DefaultCertSerialisation(Certificate cer) {
+       this.cer = cer;
     }
+
+    protected abstract byte[] getSerialization();
 
     public int getLength() {
-        return sz.length;
-    }
-
-    public String getMimeType() {
-        return mime;
+        return getSerialization().length;
     }
 
     public void writeTo(OutputStream out) throws IOException {
-        out.write(sz);
+        out.write(getSerialization());
     }
 
     public void writeTo(ServletResponse response) throws IOException {
-        response.setContentLength(sz.length);
+        response.setContentLength(getLength());
         response.setContentType(getMimeType());
         writeTo(response.getOutputStream());
     }
@@ -79,7 +80,7 @@ public class DefaultCertSerialisation implements CertSerialisation {
      */
     public String toString() {
         return "DO NOT USE FOR OUTPUT! use write(ServletResponse res) instead!\r\n"+
-                new String(sz, Charset.forName("UTF-8"));
+                new String(getSerialization(), Charset.forName("UTF-8"));
 
     }
 }

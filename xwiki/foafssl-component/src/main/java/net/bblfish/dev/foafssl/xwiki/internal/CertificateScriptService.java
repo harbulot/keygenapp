@@ -169,6 +169,7 @@ public class CertificateScriptService extends AbstractLogEnabled implements Scri
             if (pemObject instanceof PKCS10CertificationRequest) {
                 PKCS10CertificationRequest pkcs10Obj = (PKCS10CertificationRequest) pemObject;
                 DefaultCertificate cert = new DefaultCertificate(this);
+                cert.setDefaultSerialisation(new PEMSerialisation(cert));
                 try {
                     cert.setSubjectPublicKey(create(pkcs10Obj.getPublicKey()));
                     return cert;
@@ -191,6 +192,7 @@ public class CertificateScriptService extends AbstractLogEnabled implements Scri
         try {
             NetscapeCertRequest certRequest = new NetscapeCertRequest(Base64.decode(spkac));
             DefaultCertificate cert = new DefaultCertificate(this);
+            cert.setDefaultSerialisation(new DERSerialisation(cert));
             cert.setSubjectPublicKey(create(certRequest.getPublicKey()));
             return cert;
         } catch (IOException e) {

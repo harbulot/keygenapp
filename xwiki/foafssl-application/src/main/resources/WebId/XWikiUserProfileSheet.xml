@@ -12,9 +12,9 @@
 <customClass></customClass>
 <contentAuthor>xwiki:XWiki.bblfish</contentAuthor>
 <creationDate>1267010798000</creationDate>
-<date>1268133146000</date>
-<contentUpdateDate>1268133146000</contentUpdateDate>
-<version>13.1</version>
+<date>1268336961000</date>
+<contentUpdateDate>1268336961000</contentUpdateDate>
+<version>25.1</version>
 <title></title>
 <template></template>
 <defaultTemplate></defaultTemplate>
@@ -72,7 +72,7 @@
        xmlns:dct="http:~/~/purl.org/dc/terms/"
        xmlns:cert="http:~/~/www.w3.org/ns/auth/cert#"
        xmlns:rsa="http:~/~/www.w3.org/ns/auth/rsa#"
-       xmlns:xsd="http:~/~/ww.w3.org/2001/XMLSchema#"
+       xmlns:xsd="http:~/~/www.w3.org/2001/XMLSchema#"
        about="" typeof="foaf:PersonalProfileDocument"
        class="vcard"
        rel="foaf:primaryTopic" href="#me"&gt;
@@ -117,17 +117,18 @@ $xwiki.ssx.use('Main.Dashboard')##
         &lt;dd #if($context.action == 'view')class="adr"#end&gt;$doc.display('address')&lt;/dd&gt;
       &lt;/dl&gt;
       &lt;h1&gt;Public Keys&lt;/h1&gt;
+#set ($pks= $doc.getObjects("WebId.RSAPubKeyClass") )
      &lt;table title="Existing Keys" summary="A list of public keys identifying this user"&gt;
-     #foreach ($key in $doc.getObjects("WebId.RSAPubKeyClass") )
-       &lt;span typeof="rsa:RSAPublicKey"&gt;
+     #foreach ($key in $pks )
+       &lt;tbody typeof="rsa:RSAPublicKey"&gt;
           &lt;tr&gt;&lt;td colspan="2" bgcolor="white" rel="cert:identity" href="#me" align="center"&gt;$!key.getProperty('name').value&lt;/td&gt;&lt;/tr&gt;
           &lt;tr&gt;&lt;td&gt;hex modulus&lt;/td&gt;#set($modulus=$!key.getProperty('hexModulus').value)
               &lt;td rel="rsa:modulus"&gt;&lt;pre class="hidden" property="cert:hex" datatype="xsd:string"&gt;$modulus&lt;/pre&gt;$modulus.substring(0,20) ...&lt;/td&gt;
           &lt;/tr&gt;
           &lt;tr&gt;&lt;td&gt;exponent&lt;/td&gt;
-               &lt;td rel="rsa:public_exponent"&gt;&lt;span property="cert:decimal" lang="" datatype="xsd:string"&gt;$!key.intExponent&lt;/span&gt;&lt;/td&gt;
+               &lt;td rel="rsa:public_exponent"&gt;&lt;span property="cert:decimal" datatype="xsd:string"&gt;$!key.intExponent&lt;/span&gt;&lt;/td&gt;
           &lt;/tr&gt;
-     &lt;/span&gt;
+     &lt;/tbody&gt;
      #end
      &lt;/table&gt;
      #if($hasEdit)

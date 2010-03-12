@@ -34,6 +34,7 @@ package net.bblfish.dev.foafssl.xwiki;
 
 import org.xwiki.component.annotation.ComponentRole;
 
+import java.security.cert.X509Certificate;
 import java.util.Date;
 
 /**
@@ -45,6 +46,13 @@ import java.util.Date;
 @ComponentRole
 public interface Certificate {
 
+
+    /**
+     * @return the X509 Certificate
+     */
+    public X509Certificate getCertificate();
+
+
     /**
      * Set the <a href="http://esw.w3.org/topic/webid">WebID</a> for the certificate.
      *
@@ -54,9 +62,8 @@ public interface Certificate {
 
 
     /**
-     *
-     * @param name   he user should set a himself a name that will be easily recognised in the browser.
-     * Eg: "Henry-public"
+     * @param name he user should set a himself a name that will be easily recognised in the browser.
+     *             Eg: "Henry-public"
      */
     public void setSubjectCommonName(String name);
 
@@ -72,12 +79,11 @@ public interface Certificate {
 
 
     /**
-     * @param startDate  Set the start date for the validity of the certificate. If unset it will be now.
+     * @param startDate Set the start date for the validity of the certificate. If unset it will be now.
      */
     public void setStartDate(Date startDate);
 
     /**
-     *
      * @return the start validity date for the certificate
      */
     public Date getStartDate();
@@ -93,14 +99,13 @@ public interface Certificate {
 
 
     /**
-     *
      * @return end validity date for the certificate
      */
     public Date getEndDate();
 
 
     /**
-     *  set duration of cert in days. Easier to set than the end date.
+     * set duration of cert in days. Easier to set than the end date.
      *
      * @param days the duration of the certificate in days, as an integer string.
      */
@@ -123,8 +128,21 @@ public interface Certificate {
     public PubKey getSubjectPublicKey();
 
     /**
+     * When we create a certificate we already know the serialisation it is going to require.
+     * So this method is here to set it.
+     * <p/>
+     * note: this could perhaps better be done in the constructor. It is not clear that this will be needed
+     * by scripts, so perhaps it should not be here
+     *
+     * @param ser the serialisation implementation
+     */
+    void setDefaultSerialisation(CertSerialisation ser);
+
+
+    /**
      * get the encoded version of this certificate in a binary form
-     * @return  the certificate in mime type "application/x-x509-user-cert"
+     *
+     * @return the serialisation object (which sets headers, mime types, length, etc..)
      * @throws Exception why? //todo: is this really needed
      */
     public CertSerialisation getSerialisation() throws Exception;

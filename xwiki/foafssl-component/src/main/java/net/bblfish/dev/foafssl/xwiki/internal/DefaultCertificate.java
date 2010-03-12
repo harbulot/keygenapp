@@ -67,10 +67,16 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
     PubKey subjectPubKey;
     private CertificateScriptService service;
     X509Certificate cert = null;
+    CertSerialisation serialization;
 
     DefaultCertificate(CertificateScriptService service) {
         this.service = service;
     }
+
+    public X509Certificate getCertificate() {
+        return cert;
+    }
+
 
     public void setSubjectWebID(String urlStr) {
         try {
@@ -136,16 +142,16 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
         this.subjectPubKey = pubkey;
     }
 
-    CertSerialisation sz = null;
+
+     public void setDefaultSerialisation(CertSerialisation ser) {
+         serialization = ser;
+     }
 
     public CertSerialisation getSerialisation() throws Exception {
         if (cert == null) {
             generate();
         }
-        if (sz == null) {
-            sz = new DefaultCertSerialisation(cert.getEncoded());
-        }
-        return sz;
+        return serialization;
     }
 
     protected void generate() throws Exception {
