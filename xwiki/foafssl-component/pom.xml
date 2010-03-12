@@ -41,7 +41,7 @@
     </parent>
     <!--groupId>net.bblfish.dev.xwiki.keygenapp</groupId-->
     <artifactId>foafssl-component</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
     <properties>
         <!-- TODO: remove this if you inherit a project that has the core version set >
         <platform.core.version>1.8-SNAPSHOT</platform.core.version-->
