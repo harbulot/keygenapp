@@ -32,10 +32,12 @@ To add the functionality to XWiki do the following.
 
     $ cd $XWIKI_HOME
     $ ./start_xwiki.sh
+    
+    call ${yourhost} the name of the host on which you are running this instance of xwiki
 
-  - In your web browser go to your version of
+  - In your web browser go to 
 
-     http://localhost:8080/xwiki/bin/import/XWiki/XWikiPreferences
+     http://${yourhost}/xwiki/bin/import/XWiki/XWikiPreferences
   
   - press Install
   - select the file on your file system
@@ -73,3 +75,10 @@ To add the functionality to XWiki do the following.
    This way, it is easy to switch back in case of a problem.
 
  5. Now every user profile page should allow its user to create a WebId.
+
+ 6. To enable OpenId (which is now in the html) you also need to add the following lines to  the Presentation section of the Preferences Panel
+    http://${yourhost}/xwiki/bin/admin/XWiki/XWikiPreferences
+
+   #if($doc.getObject("XWiki.XWikiUsers"))
+<link rel="openid2.provider openid.server" href="http://openid4.me/index.php"/>
+   #end
