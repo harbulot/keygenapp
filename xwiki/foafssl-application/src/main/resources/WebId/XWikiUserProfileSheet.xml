@@ -12,9 +12,9 @@
 <customClass></customClass>
 <contentAuthor>xwiki:XWiki.bblfish</contentAuthor>
 <creationDate>1267010798000</creationDate>
-<date>1268480122000</date>
-<contentUpdateDate>1268480122000</contentUpdateDate>
-<version>32.1</version>
+<date>1268689398000</date>
+<contentUpdateDate>1268689398000</contentUpdateDate>
+<version>85.1</version>
 <title></title>
 <template></template>
 <defaultTemplate></defaultTemplate>
@@ -64,6 +64,25 @@
 
 {{info}}$msg.get('xe.admin.users.applyonusers'){{/info}}
 #else
+  {{html}}
+
+   &lt;script type="text/javascript"&gt;
+    function noSpkacNow(form) {
+      if (true==form.nodebug.checked) { 
+          form.spkac.remove();
+          return true;
+      }
+    }
+    document.observe("dom:loaded", function() {
+       if (navigator.appName == "Microsoft Internet Explorer") {
+           $('spkacRow').remove();
+           $('advanced').writeAttribute('type', 'hidden').writeAttribute('checked');
+           $('advancedSpan').writeAttribute('class','hidden');
+       }
+    });
+   &lt;/script&gt;
+
+{{/html}}
 {{html clean="false" wiki="true"}}
 #set($username = $xwiki.getUserName($doc.fullName, false))
 = $msg.get('platform.core.profile.title', [$username]) =
@@ -76,7 +95,6 @@
        about="" typeof="foaf:PersonalProfileDocument"
        class="vcard"
        rel="foaf:primaryTopic" href="#me"&gt;
-
   &lt;span about="#xwikiAcnt" typeof="foaf:OnlineAccount" property="foaf:accountName" class="fn hidden"&gt;$username&lt;/span&gt;
 #end
 $xwiki.ssx.use("XWiki.XWikiUserSheet")##
@@ -123,49 +141,54 @@ $xwiki.ssx.use('Main.Dashboard')##
        #else
       &lt;p&gt;{{html wiki=false}}Your OpenId is &lt;a about="#me" rel="foaf:openid" href="${doc.getExternalURL()}"&gt;${doc.getExternalURL()}&lt;/a&gt;{{/html}}&lt;/p&gt;
        #end
+   #if ($context.action != 'inline')
       &lt;h1&gt;Web Id&lt;/h1&gt;
      &lt;table title="Existing Keys" summary="A list of public keys identifying this user"&gt;
      #foreach ($key in $pks )
        &lt;tbody typeof="rsa:RSAPublicKey"&gt;
           &lt;tr&gt;&lt;td colspan="2" bgcolor="white" rel="cert:identity" href="#me" align="center"&gt;$!key.getProperty('name').value&lt;/td&gt;&lt;/tr&gt;
           &lt;tr&gt;&lt;td&gt;hex modulus&lt;/td&gt;#set($modulus=$!key.getProperty('hexModulus').value)
-              &lt;td rel="rsa:modulus"&gt;&lt;pre class="hidden" property="cert:hex" datatype="xsd:string"&gt;$modulus&lt;/pre&gt;$modulus.substring(0,20) ...&lt;/td&gt;
+              &lt;td rel="rsa:modulus"&gt;&lt;pre class="hidden" property="cert:hex" datatype="xsd:string"&gt;$modulus&lt;/pre&gt;$modulus.substring(0,15) ...&lt;/td&gt;
           &lt;/tr&gt;
           &lt;tr&gt;&lt;td&gt;exponent&lt;/td&gt;
-               &lt;td rel="rsa:public_exponent"&gt;&lt;span property="cert:decimal" datatype="xsd:string"&gt;$!key.intExponent&lt;/span&gt;&lt;/td&gt;
+               &lt;td rel="rsa:public_exponent"&gt;&lt;pre property="cert:decimal" datatype="xsd:string"&gt;$!key.intExponent&lt;/pre&gt;&lt;/td&gt;
           &lt;/tr&gt;
      &lt;/tbody&gt;
      #end
      &lt;/table&gt;
      #if($hasEdit)
-     &lt;h1&gt;Create a new WebId Certificate&lt;/h1&gt;
 {{html wiki=false}}
-     &lt;form id="keygenform" action="$xwiki.getDocument('WebId.CreateCert').getURL()" method="post"&gt;
+     &lt;form id="keygenform" action="$xwiki.getDocument('WebId.CreateCert').getURL()" method="post" onsubmit="return noSpkacNow(this);"&gt;
        &lt;table&gt;
   &lt;tr&gt;
-  &lt;td&gt;Common Name (to help you identify the certificate):&lt;/td&gt;
+  &lt;td&gt;Name for Cert&lt;/td&gt;
   &lt;td&gt;&lt;input name="cn" id="cn" type="text" value="" /&gt;&lt;/td&gt;
   &lt;/tr&gt;
-  &lt;tr&gt;
+  &lt;tr id="spkacRow"&gt;
   &lt;td&gt;Key strength:&lt;/td&gt;
-  &lt;td id="keystrenghtd"&gt;&lt;keygen id="spkac" name="spkac"
+  &lt;td id="keystrenghtd"&gt;&lt;keygen id="spkac" name="spkac" 
    challenge="TheChallenge1"/&gt;&lt;/td&gt;
   &lt;/tr&gt;
        &lt;/table&gt;
       &lt;input name="webid" id="webid" type="hidden" value="${doc.getExternalURL()}#me"/&gt;
        &lt;input id="keygensubmit" type="submit" value="Submit Certificate Request"/&gt;
+      &lt;span id="advancedSpan"&gt;&lt;input id="advanced" type="checkbox" name="nodebug" value="yes" /&gt;advanced&lt;/span&gt; 
      &lt;/form&gt;
 &lt;p&gt;To test your certificates try some of &lt;a href="http://esw.w3.org/topic/foaf+ssl/RelyingParties"&gt;the foaf+ssl test pages&lt;/a&gt;.&lt;/p&gt;
 {{/html}}
      #end
+    #end
       #set($hasBlog = ($obj.getProperty('blog') &amp;&amp; $obj.getProperty('blog').getValue() != ''))
       #set($hasBlogFeed = ($obj.getProperty('blogfeed') &amp;&amp; $obj.getProperty('blogfeed').getValue() != ''))
       #if($hasBlog || $hasBlogFeed || $context.action == 'inline')
        &lt;h1&gt;$msg.get('platform.core.profile.section.links')&lt;/h1&gt;
         &lt;dl&gt;
-          #if($hasBlog || $context.action == 'inline')
-            &lt;dt class="label"&gt;&lt;label&gt;$msg.get('platform.core.profile.blog')&lt;/label&gt;&lt;/dt&gt;
-          {{html wiki=false}}&lt;dd&gt;&lt;a about="#me" href="$doc.display('blog')" rel="foaf:blog"&gt;$doc.display('blog')&lt;/a&gt;&lt;/dd&gt;{{/html}}
+          #if($context.action == 'inline')
+           &lt;dt class="label"&gt;&lt;label&gt;$msg.get('platform.core.profile.blog')&lt;/label&gt;&lt;/dt&gt;
+            &lt;dd&gt;$doc.display('blog')&lt;/dd&gt;  
+         #elseif ($hasBlog)
+         {{html wiki=false}}&lt;dt class="label"&gt;$msg.get('platform.core.profile.blog')&lt;/dt&gt;
+          &lt;dd&gt;&lt;a about="#me" href="$obj.getProperty('blog').getValue()" rel="foaf:blog"&gt;$obj.getProperty('blog').getValue()&lt;/a&gt;&lt;/dd&gt;{{/html}}
           #end
           #if($hasBlogFeed || $context.action == 'inline')
             &lt;dt class="label"&gt;&lt;label&gt;$msg.get('platform.core.profile.blogFeed')&lt;/label&gt;&lt;/dt&gt;
