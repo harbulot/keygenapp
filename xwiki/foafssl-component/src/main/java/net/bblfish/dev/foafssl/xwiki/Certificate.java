@@ -45,6 +45,10 @@ import java.util.Date;
  */
 @ComponentRole
 public interface Certificate {
+     public static final long SECOND = 1000; //milliseconds
+     public static final long HOUR = 60 * 60 * SECOND;
+     public static final long DAY = 24 * HOUR;
+     public static final long YEAR = 365*DAY;
 
 
     /**
@@ -107,9 +111,19 @@ public interface Certificate {
     /**
      * set duration of cert in days. Easier to set than the end date.
      *
-     * @param days the duration of the certificate in days, as an integer string.
+     * @param days the duration of the certificate in days, as a floating point number
      */
     public void addDurationInDays(String days);
+
+
+    /**
+     * in order to avoid synchronization problems it is good to set the
+     * start date to be somewhat earlier than the current time.
+     * This time is then added to the length of time the certificate is meant to last.
+     *
+     * @param hours a floating point number
+     */
+    public void startEarlier(String hours);
 
 
     /**

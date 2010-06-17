@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>WebId</web>
+<name>XWikiUserSheet</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent></parent>
+<creator>xwiki:XWiki.bblfish</creator>
+<author>xwiki:XWiki.bblfish</author>
+<customClass></customClass>
+<contentAuthor>xwiki:XWiki.bblfish</contentAuthor>
+<creationDate>1269443821000</creationDate>
+<date>1269443854000</date>
+<contentUpdateDate>1269443854000</contentUpdateDate>
+<version>1.1</version>
+<title></title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>false</hidden>
+<object>
+<class>
+<name>XWiki.TagClass</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<tags>
+<cache>0</cache>
+<displayType>input</displayType>
+<multiSelect>1</multiSelect>
+<name>tags</name>
+<number>1</number>
+<prettyName>Tags</prettyName>
+<relationalStorage>1</relationalStorage>
+<separator>|</separator>
+<separators>|,</separators>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<values></values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</tags>
+</class>
+<name>WebId.XWikiUserSheet</name>
+<number>0</number>
+<className>XWiki.TagClass</className>
+<guid>59332a48-17a2-4094-bf34-82e4a4e6bb9e</guid>
+<property>
+<tags/>
+</property>
+</object>
+<content>{{velocity}}
+##
+## Extensions and vars
+##
+$xwiki.ssx.use("XWiki.XWikiUserSheet")##
+$xwiki.jsx.use("XWiki.XWikiUserSheet")##
+#set($obj = $doc.getObject("XWiki.XWikiUsers"))
+##
+## Categories
+##
+#set($categories = $util.arrayList)
+#set($discard = $categories.add(['profile', $msg.get('platform.core.profile.category.profile'), 'WebId.XWikiUserProfileSheet', 'icons/silk/vcard.gif']))
+#set($isMyProfile = ($context.user == $doc.fullName))
+#if($isMyProfile || $hasAdmin)
+  #set($discard = $categories.add(['preferences', $msg.get('platform.core.profile.category.preferences'), 'XWiki.XWikiUserPreferencesSheet', 'icons/silk/wrench.gif']))
+#end
+## TODO: add APIs to be able to display users watchlists to admins
+#if($isMyProfile)
+  #set($discard = $categories.add(['watchlist', $msg.get('platform.core.profile.category.watchlist'), 'XWiki.XWikiUserWatchListSheet', 'icons/silk/star.gif']))
+#end
+##
+## Avatar
+##
+#set($avatarURL = '')
+#if($obj.getProperty("avatar") &amp;&amp; $obj.getProperty("avatar").getValue() != '')
+  #foreach ($attach in $doc.attachmentList)
+    #if($attach.filename == $obj.getProperty("avatar").getValue())
+      #set($avatarURL = "$doc.getAttachmentURL($attach.filename, 'download', 'width=120')")
+    #end
+  #end
+#end
+#if("$!avatarURL" == '')
+  #set($avatarURL = $xwiki.getDocument("XWiki.XWikiUserSheet").getAttachmentURL('noavatar.png', 'download', 'width=120'))
+#end
+##
+## Current category
+##
+#set($currentCategory = "$!request.category")
+#if($currentCategory == "")
+  #set($currentCategory = $listtool.get($listtool.get($categories, 0), 0))
+#end
+##
+## Display
+##
+{{html clean="false"}}
+  &lt;div id="vertical-panes"&gt;
+    ##
+    ## Tabs
+    ##
+    &lt;div id="vertical-tabs"&gt;
+      &lt;div id="avatar" xmlns:foaf="http:~/~/xmlns.com/foaf/0.1/"&gt;
+        &lt;span id="avatarUpload" class="hidden"&gt;$msg.get('platform.core.profile.changePhoto')&lt;/span&gt;
+        &lt;a href="$doc.getURL('edit', 'xpage=changemyavatar')" &gt;&lt;img about="${doc.getExternalURL()}#me" rel="foaf:logo" class="photo" id="xwikiuseravatar" alt="$doc.display('first_name', 'view', $obj)" src="$avatarURL" href="$avatarURL"/&gt;&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div&gt; 
+        &lt;ul&gt;
+          #foreach($tab in $categories)
+            #set($tabKey = $listtool.get($tab, 0))
+            #set($tabName = $listtool.get($tab, 1))
+            #set($tabIcon = $listtool.get($tab, 3))
+            &lt;li id="${tabKey}Tab" class="vertical-tab#if($tabKey == $currentCategory) active#end"&gt;&lt;a href="?category=${tabKey}"&gt;&lt;img src="$xwiki.getSkinFile($tabIcon)" alt="$tabName" /&gt;&lt;span&gt;$tabName&lt;/span&gt;&lt;/a&gt;&lt;script type="text/javascript"&gt;Event.observe($("${tabKey}Tab"), 'click', function(event) { XWiki.userprofile.switchTab("${tabKey}"); Event.stop(event); });&lt;/script&gt;&lt;/li&gt;
+          #end
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    ##
+    ## Panes
+    ##
+    #foreach($tab in $categories)
+      #set($tabKey = $listtool.get($tab, 0))
+      #set($tabInclude = $listtool.get($tab, 2))
+      &lt;div id="${tabKey}Pane" class="vertical-pane#if($tabKey != $currentCategory) hidden#end"&gt;
+        {{/html}}
+          {{include document="${tabInclude}" /}}
+        {{html clean="false"}}
+      &lt;/div&gt;
+    #end
+    &lt;div class="clearfloats"&gt;&amp;nbsp;&lt;/div&gt;
+  &lt;/div&gt;
+{{/html}}
+{{/velocity}}</content></xwikidoc>

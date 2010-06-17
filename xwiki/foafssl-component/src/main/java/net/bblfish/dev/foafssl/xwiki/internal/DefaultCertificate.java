@@ -40,13 +40,11 @@ import org.bouncycastle.asn1.misc.MiscObjectIdentifiers;
 import org.bouncycastle.asn1.misc.NetscapeCertType;
 import org.bouncycastle.asn1.x509.*;
 import org.bouncycastle.x509.X509V3CertificateGenerator;
-import org.bouncycastle.x509.extension.AuthorityKeyIdentifierStructure;
 import org.bouncycastle.x509.extension.SubjectKeyIdentifierStructure;
 import org.xwiki.component.logging.AbstractLogEnabled;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.InvalidKeyException;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 import java.util.Vector;
@@ -58,12 +56,15 @@ import java.util.Vector;
  */
 
 public class DefaultCertificate extends AbstractLogEnabled implements Certificate {
+
+
     String webId;
     String CN;
     Date startDate;
     Date endDate;
-    int durationInDays;
-    float durationInHours;
+    double numDays = 0;
+    double numHours = 0;
+    double earlier = 0;
     PubKey subjectPubKey;
     private CertificateScriptService service;
     X509Certificate cert = null;
@@ -79,8 +80,9 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
 
 
     public void setSubjectWebID(String urlStr) {
+        URL url = null;
         try {
-            URL url = new URL(urlStr);
+            url = new URL(urlStr);
             String protocol = url.getProtocol();
             if (protocol.equals("http") || protocol.equals("https") || protocol.equals("ftp") || protocol.equals("ftps")) {
                 //everything probably ok, though really https should be the default
@@ -90,7 +92,7 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
             }
 
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            getLogger().warn("Malformed URL " + url, e);
         }
         this.webId = urlStr;
     }
@@ -110,19 +112,24 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
 
     public void addDurationInDays(String days) {
         try {
-            Float d = Float.valueOf(days);
-            this.durationInDays += d.intValue();
-            float remainder = (d - durationInDays);
-            this.durationInHours += remainder * 24;
+            this.numDays += Double.valueOf(days);
         } catch (NumberFormatException e) {
             getLogger().warn("unable to interpret the number of days passed as a float " + days);
         }
-        //this.durationInDays = days;
+        //this.numDays = days;
+    }
+
+    public void startEarlier(String hours) {
+        try {
+            this.earlier += Double.valueOf(hours);
+        } catch (NumberFormatException e) {
+            getLogger().warn("unable to interpret the number of days passed as a float " + hours);
+        }
     }
 
     public void addDurationInHours(String hours) {
         try {
-            this.durationInHours = Float.valueOf(hours);
+            this.numHours += Double.valueOf(hours);
         } catch (NumberFormatException e) {
             getLogger().warn("unable to interpret the number of hours passed as a float" + hours);
         }
@@ -143,9 +150,9 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
     }
 
 
-     public void setDefaultSerialisation(CertSerialisation ser) {
-         serialization = ser;
-     }
+    public void setDefaultSerialisation(CertSerialisation ser) {
+        serialization = ser;
+    }
 
     public CertSerialisation getSerialisation() throws Exception {
         if (cert == null) {
@@ -250,7 +257,7 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
         certGenerator.addExtension(X509Extensions.AuthorityKeyIdentifier,
                 false, authorityKeyIdentifier);
         */
-        
+
         /*
          * Adds the subject key identifier extension.
          */
@@ -285,12 +292,11 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
     public Date getEndDate() {
         if (endDate == null) {
             long endtime;
-            if (durationInDays != 0 || durationInHours != 0) {
-                endtime = getStartDate().getTime();
-                endtime += durationInDays * 24 * 60 * 60 * 1000 + (long) (durationInHours * 60 * 60 * 1000);
-            } else {
-                endtime = startDate.getTime() + 365L * 24L * 60L * 60L * 1000L;
+            if (numDays == 0 && numHours == 0) {
+                numDays = 365;
             }
+            endtime = getStartDate().getTime();
+            endtime += (long) (numDays * DAY) + (long) ((numHours + earlier) * HOUR);
             endDate = new Date(endtime);
         }
         return endDate;
@@ -299,7 +305,7 @@ public class DefaultCertificate extends AbstractLogEnabled implements Certificat
 
     public Date getStartDate() {
         if (startDate == null) {
-            startDate = new Date();
+            startDate = new Date(System.currentTimeMillis() - (long) (earlier * HOUR));
         }
         return startDate;
     }

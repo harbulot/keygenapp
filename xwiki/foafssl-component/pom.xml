@@ -41,7 +41,9 @@
     </parent>
     <!--groupId>net.bblfish.dev.xwiki.keygenapp</groupId-->
     <artifactId>foafssl-component</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <name>XWiki Platform - Foaf+ssl - Component</name>
+
+    <version>0.3.1-SNAPSHOT</version>
     <properties>
         <!-- TODO: remove this if you inherit a project that has the core version set >
         <platform.core.version>1.8-SNAPSHOT</platform.core.version-->
@@ -56,12 +58,12 @@
         <dependency>
             <groupId>org.xwiki.platform</groupId>
             <artifactId>xwiki-core-component-api</artifactId>
-            <version>2.3-SNAPSHOT</version>
+            <version>2.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.xwiki.platform</groupId>
             <artifactId>xwiki-core-script</artifactId>
-            <version>2.3-SNAPSHOT</version>
+            <version>2.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>

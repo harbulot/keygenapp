@@ -82,3 +82,20 @@ To add the functionality to XWiki do the following.
    #if($doc.getObject("XWiki.XWikiUsers"))
 <link rel="openid2.provider openid.server" href="http://openid4.me/index.php"/>
    #end
+
+ 7. TODO: Tie in WebId.XWikiUserSheet into the page rendering process.
+ (this just adds the icon as a foaf:logo to the page )
+
+ 8 to get the RDFa DOCTYPE
+  edit /xwiki/bin/view/XWiki/DefaultSkin
+  and add to the htmlheader.vm
+  <?xml version="1.0" encoding="$xwiki.encoding" ?>
+  ## TODO this should be more specific
+  #if("$!request.noDoctype" != "true")
+   #if($doc.getObject("XWiki.XWikiUsers")) ##RDFa doctype
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+   #else
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+   #end
+  #end

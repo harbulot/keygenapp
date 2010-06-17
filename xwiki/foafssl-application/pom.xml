@@ -39,13 +39,13 @@
     <parent>
         <groupId>net.bblfish.dev.xwiki.keygenapp</groupId>
         <artifactId>keygenapp</artifactId>
-        <version>0.3-SNAPSHOT</version>
+        <version>0.3.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>foafssl-application</artifactId>
     <name>XWiki Platform - Applications - Foaf+ssl</name>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.3.1-SNAPSHOT</version>
     <packaging>xar</packaging>
     <description>FOAF+SSL certificate creation for XWiki</description>
 </project>

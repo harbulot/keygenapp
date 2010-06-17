@@ -9,7 +9,7 @@
     <groupId>net.bblfish.dev.xwiki.keygenapp</groupId>
 	<artifactId>keygenapp</artifactId>
 	<packaging>pom</packaging>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.3.1-SNAPSHOT</version>
 	<name>Keygen App</name>
 	<url>http://esw.w3.org/topic/foaf+ssl</url>
 	<licenses>
