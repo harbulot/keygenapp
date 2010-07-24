@@ -56,14 +56,19 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>uk.ac.manchester.rcs.bruno.keygenapp</groupId>
+            <artifactId>keygenapp-base</artifactId>
+            <version>0.3-SNAPSHOT</version>            
+        </dependency>
+        <dependency>
             <groupId>org.xwiki.platform</groupId>
             <artifactId>xwiki-core-component-api</artifactId>
-            <version>2.4-SNAPSHOT</version>
+            <version>2.4</version>
         </dependency>
         <dependency>
             <groupId>org.xwiki.platform</groupId>
             <artifactId>xwiki-core-script</artifactId>
-            <version>2.4-SNAPSHOT</version>
+            <version>2.4</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>

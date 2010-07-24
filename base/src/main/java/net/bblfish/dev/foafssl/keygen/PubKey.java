@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+/*
  * New BSD license: http://opensource.org/licenses/bsd-license.php
  *
- * Copyright (c) 2010.
+ *  Copyright (c) 2010.
  * Henry Story
  * http://bblfish.net/
  *
@@ -29,31 +27,27 @@
  *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  *  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- *  POSSIBILITY OF SUCH DAMAGE.0-1301 USA, or see the FSF site: http://www.fsf.org.
+ *  POSSIBILITY OF SUCH DAMAGE.
+ */
+
+package net.bblfish.dev.foafssl.keygen;
+
+
+import java.security.PublicKey;
+
+/**
+ * Wrapper class for the java Public Key class, in a public private key pair.
+ * To give access to the few methods needed by a scripting engine
  *
--->
+ * @author Henry J. Story
+ */
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>net.bblfish.dev.xwiki.keygenapp</groupId>
-        <artifactId>keygenapp</artifactId>
-        <version>0.3.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+public interface PubKey {
 
-    <artifactId>foafssl-application</artifactId>
-    <name>XWiki Platform - Applications - Foaf+ssl</name>
-    <version>0.3.1-SNAPSHOT</version>
-    <packaging>xar</packaging>
-    <description>FOAF+SSL certificate creation for XWiki</description>
-    <dependencies>
-        <dependency>
-            <groupId>uk.ac.manchester.rcs.bruno.keygenapp</groupId>
-            <artifactId>keygenapp-base</artifactId>
-            <version>0.3-SNAPSHOT</version>            
-        </dependency>
-    </dependencies>
-</project>
+    /**
+     * The underlying class
+     * @return the public key, on which this wrapper class is basd
+     */
+    PublicKey getPublicKey();
 
+}

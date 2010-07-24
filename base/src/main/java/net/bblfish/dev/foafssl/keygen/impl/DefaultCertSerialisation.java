@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+/*
  * New BSD license: http://opensource.org/licenses/bsd-license.php
  *
- * Copyright (c) 2010.
+ *  Copyright (c) 2010.
  * Henry Story
  * http://bblfish.net/
  *
@@ -29,31 +27,54 @@
  *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  *  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- *  POSSIBILITY OF SUCH DAMAGE.0-1301 USA, or see the FSF site: http://www.fsf.org.
- *
--->
+ *  POSSIBILITY OF SUCH DAMAGE.
+ */
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>net.bblfish.dev.xwiki.keygenapp</groupId>
-        <artifactId>keygenapp</artifactId>
-        <version>0.3.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+package net.bblfish.dev.foafssl.keygen.impl;
 
-    <artifactId>foafssl-application</artifactId>
-    <name>XWiki Platform - Applications - Foaf+ssl</name>
-    <version>0.3.1-SNAPSHOT</version>
-    <packaging>xar</packaging>
-    <description>FOAF+SSL certificate creation for XWiki</description>
-    <dependencies>
-        <dependency>
-            <groupId>uk.ac.manchester.rcs.bruno.keygenapp</groupId>
-            <artifactId>keygenapp-base</artifactId>
-            <version>0.3-SNAPSHOT</version>            
-        </dependency>
-    </dependencies>
-</project>
+import net.bblfish.dev.foafssl.keygen.CertSerialisation;
+import net.bblfish.dev.foafssl.keygen.Certificate;
 
+import javax.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
+
+/**
+ * Implementation of CertSerialisation
+ * 
+ * @author Henry Story
+ */
+public abstract class DefaultCertSerialisation  implements CertSerialisation {
+    private byte[] sz;
+    String mime = "application/x-x509-user-cert";
+    Certificate cer;
+
+    DefaultCertSerialisation(Certificate cer) {
+       this.cer = cer;
+    }
+
+    public int getLength() {
+        return getContent().length;
+    }
+
+    public void writeTo(OutputStream out) throws IOException {
+        out.write(getContent());
+    }
+
+    public void writeTo(ServletResponse response) throws IOException {
+        response.setContentLength(getLength());
+        response.setContentType(getMimeType());
+        writeTo(response.getOutputStream());
+    }
+
+    /**
+     * Should not be used, only for testing!
+     * @return a string representation of the output
+     */
+    public String toString() {
+        return "DO NOT USE FOR OUTPUT! use write(ServletResponse res) instead!\r\n"+
+                new String(getContent(), Charset.forName("UTF-8"));
+
+    }
+}

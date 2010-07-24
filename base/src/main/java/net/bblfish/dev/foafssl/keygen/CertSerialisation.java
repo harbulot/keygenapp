@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+/*
  * New BSD license: http://opensource.org/licenses/bsd-license.php
  *
- * Copyright (c) 2010.
+ *  Copyright (c) 2010.
  * Henry Story
  * http://bblfish.net/
  *
@@ -29,31 +27,51 @@
  *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  *  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- *  POSSIBILITY OF SUCH DAMAGE.0-1301 USA, or see the FSF site: http://www.fsf.org.
+ *  POSSIBILITY OF SUCH DAMAGE.
+ */
+
+package net.bblfish.dev.foafssl.keygen;
+
+import javax.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+
+/**
+ * This makes it easier to send serialisations out in scripting languages such as velocity.
  *
--->
+ * @author Henry K. Story
+ */
+public interface CertSerialisation {
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>net.bblfish.dev.xwiki.keygenapp</groupId>
-        <artifactId>keygenapp</artifactId>
-        <version>0.3.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+    /**
+     *
+     * @return the length in bytes of this serialisation
+     */
+    int getLength();
 
-    <artifactId>foafssl-application</artifactId>
-    <name>XWiki Platform - Applications - Foaf+ssl</name>
-    <version>0.3.1-SNAPSHOT</version>
-    <packaging>xar</packaging>
-    <description>FOAF+SSL certificate creation for XWiki</description>
-    <dependencies>
-        <dependency>
-            <groupId>uk.ac.manchester.rcs.bruno.keygenapp</groupId>
-            <artifactId>keygenapp-base</artifactId>
-            <version>0.3-SNAPSHOT</version>            
-        </dependency>
-    </dependencies>
-</project>
+    /**
+     * @return the mime type of this serialisation
+     */
+    String getMimeType();
 
+    /**
+     *
+     * @return the content as an array of bytes, for frameworks that don't take streams
+     */
+    byte[] getContent();
+    
+
+    /**
+     * @param out the output stream to write this serialisation too
+     */
+    void writeTo(OutputStream out) throws IOException;
+
+    /**
+     * Write the full response the response object, including headers, such as content length and mime type
+     * Clients should use this method, as it reduces the risk of making a mistake
+     * @param response
+     */
+    void writeTo(ServletResponse response) throws IOException;
+
+
+}

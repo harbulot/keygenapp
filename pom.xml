@@ -4,7 +4,7 @@
 	<groupId>uk.ac.manchester.rcs.bruno.keygenapp</groupId>
 	<artifactId>keygenapp</artifactId>
 	<packaging>pom</packaging>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.3-SNAPSHOT</version>
 	<name>Keygen App</name>
 	<url>http://www.rcs.manchester.ac.uk/</url>
 
