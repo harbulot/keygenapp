@@ -56,11 +56,6 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>uk.ac.manchester.rcs.bruno.keygenapp</groupId>
-				<artifactId>keygenapp-base</artifactId>
-				<version>0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
 				<version>2.5</version>
@@ -84,6 +79,7 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.4</version>
+                <scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -101,5 +97,20 @@
 			</roles>
 			<timezone>0</timezone>
 		</developer>
+        <developer>
+            <id>http://bblfish.net/#hjs</id>
+            <name>Henry Story</name>
+            <email>Henry.Story@bblfish.net</email>
+            <organization>Self Employed</organization>
+            <organizationUrl>http://bblfish.net/</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>0</timezone>
+        </developer>
 	</developers>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>    
 </project>
