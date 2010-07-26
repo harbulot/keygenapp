@@ -88,7 +88,7 @@ public class MiniCaServlet extends HttpServlet {
             }
             cert.setSubjectCommonName(cn);
             cert.setSubjectWebID(webId);
-            cert.addDurationInDays("356");
+            cert.addDurationInDays("365");
             cert.startEarlier("1"); //always start one hour earlier at least, to avoid clock synchronisation issues
             cert.getSerialisation().writeTo(response);
         } catch (Exception e) {
