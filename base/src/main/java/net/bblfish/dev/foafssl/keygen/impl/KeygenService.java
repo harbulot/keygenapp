@@ -38,6 +38,8 @@ import org.bouncycastle.jce.netscape.NetscapeCertRequest;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openssl.PEMReader;
 import org.bouncycastle.util.encoders.Base64;
+import org.osgi.service.component.ComponentContext;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -88,7 +90,7 @@ public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenServi
         return new BigInteger(randomBytes).abs();
     }
 
-    protected void activate()  {
+    protected void activate(ComponentContext context)  {
         log.info("in keygen activate");
         try {
             initialize();
@@ -161,7 +163,7 @@ public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenServi
         } catch (KeyStoreException e) {
             throw new Exception("problem getting certificate with alias " + alias + "from keystore.", e);
         }
-        log.info("Initialization of " + this.getClass().getCanonicalName() + " successfull.");
+        log.info("Initialization of " + this.getClass().getCanonicalName() + " successful.");
     }
 
     public Certificate createFromPEM(String pemCsr) {
