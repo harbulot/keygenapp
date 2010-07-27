@@ -32,11 +32,11 @@
                         <Embed-Dependency>bcprov-jdk16;inline=false</Embed-Dependency>
                         <!--Export-Package>org.bouncycastle.*</Export-Package-->
                         <!--Embed-Transitive>true</Embed-Transitive-->
-                       <Service-Component>OSGI-INF/serviceComponents.xml</Service-Component>
-                       <Import-Package>!junit.framework,!junit.textui,*</Import-Package>
-                       <Export-Package>!junit,net.bblfish.dev.foafssl.keygen.*</Export-Package>
-                       <!--Bundle-SymbolicName>org.apache.clerezza.foafssl</Bundle-SymbolicName-->
-                   </instructions>
+                        <Service-Component>OSGI-INF/serviceComponents.xml</Service-Component>
+                        <Import-Package>!junit.framework,!junit.textui,*</Import-Package>
+                        <Export-Package>!junit,net.bblfish.dev.foafssl.keygen.*</Export-Package>
+                        <!--Bundle-SymbolicName>org.apache.clerezza.foafssl</Bundle-SymbolicName-->
+                    </instructions>
                 </configuration>
             </plugin>
             <plugin>
@@ -48,6 +48,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-scr-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-scr-scrdescriptor</id>
+                        <goals>
+                            <goal>scr</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -30,7 +30,7 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen.impl;
+package net.bblfish.dev.foafssl.keygen.bouncy;
 
 import net.bblfish.dev.foafssl.keygen.PubKey;
 import net.bblfish.dev.foafssl.keygen.RSAPubKey;

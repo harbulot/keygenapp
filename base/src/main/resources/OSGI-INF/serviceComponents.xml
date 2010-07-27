@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0">
-	<scr:component enabled="true" name="net.bblfish.dev.foafssl.keygen.impl.KeygenService" immediate="true">
-		<implementation class="net.bblfish.dev.foafssl.keygen.impl.KeygenService"/>
-        <service servicefactory="false">
-             <provide interface="net.bblfish.dev.foafssl.keygen.KeygenService" />
-       </service>
-	</scr:component>
-</components>

@@ -52,11 +52,11 @@ import java.security.InvalidParameterException;
  */
 @Component("foafssl")
 public class CertificateScriptService extends AbstractLogEnabled implements ScriptService, KeygenService, Initializable {
-    net.bblfish.dev.foafssl.keygen.impl.KeygenService servImp;
+    net.bblfish.dev.foafssl.keygen.bouncy.KeygenService servImp;
 
 
     public void initialize() throws InitializationException {
-        servImp = new net.bblfish.dev.foafssl.keygen.impl.KeygenService();
+        servImp = new net.bblfish.dev.foafssl.keygen.bouncy.KeygenService();
         try {
             servImp.initialize();
         } catch (Exception e) {

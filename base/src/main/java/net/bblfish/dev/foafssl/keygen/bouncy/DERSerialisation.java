@@ -1,4 +1,4 @@
-package net.bblfish.dev.foafssl.keygen.impl;
+package net.bblfish.dev.foafssl.keygen.bouncy;
 
 import net.bblfish.dev.foafssl.keygen.Certificate;
 

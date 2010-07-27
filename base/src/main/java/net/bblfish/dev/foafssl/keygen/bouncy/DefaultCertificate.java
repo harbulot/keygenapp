@@ -30,7 +30,7 @@ POSSIBILITY OF SUCH DAMAGE.
   Author: Henry Story
  */
 
-package net.bblfish.dev.foafssl.keygen.impl;
+package net.bblfish.dev.foafssl.keygen.bouncy;
 
 import net.bblfish.dev.foafssl.keygen.CertSerialisation;
 import net.bblfish.dev.foafssl.keygen.Certificate;

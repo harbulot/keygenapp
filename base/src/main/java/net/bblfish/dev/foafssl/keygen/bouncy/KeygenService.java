@@ -30,7 +30,7 @@ POSSIBILITY OF SUCH DAMAGE.
   Contributor...: Henry Story
  */
 
-package net.bblfish.dev.foafssl.keygen.impl;
+package net.bblfish.dev.foafssl.keygen.bouncy;
 
 import net.bblfish.dev.foafssl.keygen.Certificate;
 import org.bouncycastle.jce.PKCS10CertificationRequest;
@@ -38,8 +38,6 @@ import org.bouncycastle.jce.netscape.NetscapeCertRequest;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openssl.PEMReader;
 import org.bouncycastle.util.encoders.Base64;
-import org.osgi.service.component.ComponentContext;
-
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,10 +48,11 @@ import java.security.*;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static net.bblfish.dev.foafssl.keygen.impl.DefaultPubKey.create;
+import static net.bblfish.dev.foafssl.keygen.bouncy.DefaultPubKey.create;
 
 /**
  * Component that can then be called by XWiki scripts, that can then call KeygenService.
@@ -61,6 +60,8 @@ import static net.bblfish.dev.foafssl.keygen.impl.DefaultPubKey.create;
  * @author Bruno Harbulot
  * @author Henry Story
  * @since Feb 17, 2010
+ * @scr.component activate="activate"
+ * @scr.service interface="net.bblfish.dev.foafssl.keygen.KeygenService"
  */
 public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenService {
     KeyStore keyStore;
@@ -90,7 +91,12 @@ public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenServi
         return new BigInteger(randomBytes).abs();
     }
 
-    protected void activate(ComponentContext context)  {
+    /**
+     * OSGi activate method, taking properties in order to reduce dependencies.
+     * @see <a href="http://www.osgi.org/javadoc/r4v42/org/osgi/service/component/ComponentContext.html">the Component Context javadoc</a>
+     * @param properties
+     */
+    protected void activate(Map properties)  {
         log.info("in keygen activate");
         try {
             initialize();
@@ -205,5 +211,9 @@ public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenServi
         }
         return null;
     }
+
+//    public Certificate createFromCRMF(String crmfReq) {
+//        org.bouncycastle.asn1.crmf.CertRequest certRequest = new org.bouncycastle.asn1.crmf.CertRequest()
+//    }
 
 }

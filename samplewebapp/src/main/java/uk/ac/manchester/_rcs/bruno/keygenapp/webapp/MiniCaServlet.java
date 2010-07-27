@@ -33,7 +33,7 @@
 package uk.ac.manchester._rcs.bruno.keygenapp.webapp;
 
 import net.bblfish.dev.foafssl.keygen.Certificate;
-import net.bblfish.dev.foafssl.keygen.impl.KeygenService;
+import net.bblfish.dev.foafssl.keygen.bouncy.KeygenService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

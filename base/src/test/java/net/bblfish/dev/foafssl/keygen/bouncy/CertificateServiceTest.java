@@ -30,7 +30,7 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen.impl;
+package net.bblfish.dev.foafssl.keygen.bouncy;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -67,7 +67,7 @@ public class CertificateServiceTest extends TestCase {
      * @throws Exception
      */
     public void testSpkac() throws Exception {
-        net.bblfish.dev.foafssl.keygen.impl.KeygenService srvc = new net.bblfish.dev.foafssl.keygen.impl.KeygenService();
+        net.bblfish.dev.foafssl.keygen.bouncy.KeygenService srvc = new net.bblfish.dev.foafssl.keygen.bouncy.KeygenService();
         srvc.initialize();
         Certificate cert = srvc.createFromSpkac(spkac);
         PubKey spk = cert.getSubjectPublicKey();
@@ -128,7 +128,7 @@ public class CertificateServiceTest extends TestCase {
      * @throws Exception
      */
     public void testSpkacOneYear() throws Exception {
-        net.bblfish.dev.foafssl.keygen.impl.KeygenService srvc = new net.bblfish.dev.foafssl.keygen.impl.KeygenService();
+        net.bblfish.dev.foafssl.keygen.bouncy.KeygenService srvc = new net.bblfish.dev.foafssl.keygen.bouncy.KeygenService();
         srvc.initialize();
         Certificate cert = srvc.createFromSpkac(spkac);
         PubKey spk = cert.getSubjectPublicKey();
@@ -202,7 +202,7 @@ public class CertificateServiceTest extends TestCase {
     }
 
     public void testInit() throws Exception {
-        net.bblfish.dev.foafssl.keygen.impl.KeygenService srvc = new net.bblfish.dev.foafssl.keygen.impl.KeygenService();
+        net.bblfish.dev.foafssl.keygen.bouncy.KeygenService srvc = new net.bblfish.dev.foafssl.keygen.bouncy.KeygenService();
         srvc.initialize();
     }
  

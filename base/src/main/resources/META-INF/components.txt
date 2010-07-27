@@ -1,1 +1,1 @@
-net.bblfish.dev.foafssl.keygen.impl.KeygenService
+net.bblfish.dev.foafssl.keygen.bouncy.KeygenService
