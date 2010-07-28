@@ -33,6 +33,8 @@ POSSIBILITY OF SUCH DAMAGE.
 package net.bblfish.dev.foafssl.keygen.bouncy;
 
 import net.bblfish.dev.foafssl.keygen.Certificate;
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Service;
 import org.bouncycastle.jce.PKCS10CertificationRequest;
 import org.bouncycastle.jce.netscape.NetscapeCertRequest;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -60,9 +62,9 @@ import static net.bblfish.dev.foafssl.keygen.bouncy.DefaultPubKey.create;
  * @author Bruno Harbulot
  * @author Henry Story
  * @since Feb 17, 2010
- * @scr.component activate="activate"
- * @scr.service interface="net.bblfish.dev.foafssl.keygen.KeygenService"
  */
+@Component(specVersion = "1.1")
+@Service
 public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenService {
     KeyStore keyStore;
     PrivateKey privateKey;
