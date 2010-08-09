@@ -42,39 +42,38 @@ import java.nio.charset.Charset;
 
 /**
  * Implementation of CertSerialisation
- * 
+ *
  * @author Henry Story
  */
-public abstract class DefaultCertSerialisation  implements CertSerialisation {
-    private byte[] sz;
-    String mime = "application/x-x509-user-cert";
-    Certificate cer;
+public abstract class DefaultCertSerialisation implements CertSerialisation {
+	Certificate cer;
 
-    DefaultCertSerialisation(Certificate cer) {
-       this.cer = cer;
-    }
+	DefaultCertSerialisation(Certificate cer) {
+		this.cer = cer;
+	}
 
-    public int getLength() {
-        return getContent().length;
-    }
+	public int getLength() {
+		return getContent().length;
+	}
 
-    public void writeTo(OutputStream out) throws IOException {
-        out.write(getContent());
-    }
+	public void writeTo(OutputStream out) throws IOException {
+		out.write(getContent());
+	}
 
-    public void writeTo(ServletResponse response) throws IOException {
-        response.setContentLength(getLength());
-        response.setContentType(getMimeType());
-        writeTo(response.getOutputStream());
-    }
+	public void writeTo(ServletResponse response) throws IOException {
+		response.setContentLength(getLength());
+		response.setContentType(getMimeType());
+		writeTo(response.getOutputStream());
+	}
 
-    /**
-     * Should not be used, only for testing!
-     * @return a string representation of the output
-     */
-    public String toString() {
-        return "DO NOT USE FOR OUTPUT! use write(ServletResponse res) instead!\r\n"+
-                new String(getContent(), Charset.forName("UTF-8"));
+	/**
+	 * Should not be used, only for testing!
+	 *
+	 * @return a string representation of the output
+	 */
+	public String toString() {
+		return "DO NOT USE FOR OUTPUT! use write(ServletResponse res) instead!\r\n" +
+			new String(getContent(), Charset.forName("UTF-8"));
 
-    }
+	}
 }

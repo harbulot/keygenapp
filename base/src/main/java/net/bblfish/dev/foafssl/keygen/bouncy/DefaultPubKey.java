@@ -35,66 +35,80 @@ package net.bblfish.dev.foafssl.keygen.bouncy;
 import net.bblfish.dev.foafssl.keygen.PubKey;
 import net.bblfish.dev.foafssl.keygen.RSAPubKey;
 
+import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.RSAPublicKeySpec;
+
+import static java.security.KeyFactory.getInstance;
 
 /**
  * Implementation of PubKey
+ *
  * @author Henry J. Story
  */
 public abstract class DefaultPubKey implements PubKey {
 
-    static public PubKey create(PublicKey p) {
-         if (p instanceof RSAPublicKey) {
-             return new DefaultRSAPubKey((RSAPublicKey)p);
-         }
-        else return null; //we don't deal with other keys yet
-    }
+	static public PubKey create(PublicKey p) {
+		if (p instanceof RSAPublicKey) {
+			return new DefaultRSAPubKey((RSAPublicKey) p);
+		} else return null; //we don't deal with other keys yet
+	}
 
 
 }
 
 class DefaultRSAPubKey implements RSAPubKey {
-    RSAPublicKey rpk;
-    String mod, exp;
+	RSAPublicKey rpk;
+	BigInteger mod, exp;
 
-    DefaultRSAPubKey(RSAPublicKey pk) {
-        rpk = pk;
-        exp = pk.getPublicExponent().toString();
-        mod = beautify(pk.getModulus().toString(16));
-    }
+	DefaultRSAPubKey(RSAPublicKey pk) {
+		rpk = pk;
+		exp = pk.getPublicExponent();
+		mod = pk.getModulus();
+	}
 
-    /**
-     * A very simple beautify script to cut a large hex string into 60 character lengths
-     * (this should not really be in this class but somewhere else)
-     *
-     * @param s  a string to beautify
-     * @return a beautified string
-     */
-    static String beautify(String s) {
-        StringBuffer answer = new StringBuffer();
-        int start=0;
-        while (start < s.length()) {
-          int end=start+60;
-          if (end>s.length()) end= s.length();
+	DefaultRSAPubKey(BigInteger exponent, BigInteger modulus) throws NoSuchAlgorithmException, InvalidKeySpecException {
+		this.exp = exponent;
+		this.mod = modulus;
 
-          String line =s.substring(start,end);
-          answer.append(line);
-          answer.append("\r\n");
-          start=end;
-        }
-        return answer.toString();
-    }
+		rpk =  (RSAPublicKey)getInstance("RSA").
+				generatePublic( new RSAPublicKeySpec(mod,exp));
+	}
 
-    public String getHexModulus() {
-        return mod;  //To change body of implemented methods use File | Settings | File Templates.
-    }
+	/**
+	 * A very simple beautify script to cut a large hex string into 60 character lengths
+	 * (this should not really be in this class but somewhere else)
+	 *
+	 * @param s a string to beautify
+	 * @return a beautified string
+	 */
+	static String beautify(String s) {
+		StringBuffer answer = new StringBuffer();
+		int start = 0;
+		while (start < s.length()) {
+			int end = start + 60;
+			if (end > s.length()) end = s.length();
 
-    public String getIntExponent() {
-        return exp;  //To change body of implemented methods use File | Settings | File Templates.
-    }
+			String line = s.substring(start, end);
+			answer.append(line);
+			answer.append("\r\n");
+			start = end;
+		}
+		return answer.toString();
+	}
 
-    public PublicKey getPublicKey() {
-        return rpk;
-    }
+	public String getHexModulus() {
+		return beautify(mod.toString(16));  
+	}
+
+	public String getIntExponent() {
+		return exp.toString();
+	}
+
+	public PublicKey getPublicKey() {
+		return rpk;
+	}
 }

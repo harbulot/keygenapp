@@ -35,19 +35,20 @@ package net.bblfish.dev.foafssl.keygen;
 
 /**
  * An <a href="http://en.wikipedia.org/wiki/RSA">RSA</a> public key, is composed of a modulus and an exponent.
+ *
  * @author Henry J. Story
  */
 public interface RSAPubKey extends PubKey {
 
-    /**
-     * @return the modulus as a hexadecimal string as specified by the <a href="http://www.w3.org/ns/auth/cert">cert ontology</a>.
-     */
-    String getHexModulus();
+	/**
+	 * @return the modulus as a hexadecimal string as specified by the <a href="http://www.w3.org/ns/auth/cert">cert ontology</a>.
+	 */
+	String getHexModulus();
 
 
-    /**
-     * @return the exponent as an integer string
-     */
-    String getIntExponent();
+	/**
+	 * @return the exponent as an integer string
+	 */
+	String getIntExponent();
 
 }

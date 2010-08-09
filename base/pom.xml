@@ -55,7 +55,7 @@
                 <executions>
                     <execution>
                         <id>generate-scr-scrdescriptor</id>
-                        <goals>                            
+                        <goals>
                             <goal>scr</goal>
                         </goals>
                     </execution>
