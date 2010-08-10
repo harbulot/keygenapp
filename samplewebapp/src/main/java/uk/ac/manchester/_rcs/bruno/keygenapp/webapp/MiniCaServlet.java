@@ -33,7 +33,9 @@
 package uk.ac.manchester._rcs.bruno.keygenapp.webapp;
 
 import net.bblfish.dev.foafssl.keygen.Certificate;
-import net.bblfish.dev.foafssl.keygen.bouncy.KeygenService;
+import net.bblfish.dev.foafssl.keygen.KeygenService;
+import net.bblfish.dev.foafssl.keygen.bouncy.BouncyKeygenService;
+import net.bblfish.dev.foafssl.keygen.bouncy.StaticKeygenService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +46,7 @@ import java.io.IOException;
 
 public class MiniCaServlet extends HttpServlet {
     private static final long serialVersionUID = -1103006284486954147L;
-    private final transient KeygenService keygen = new KeygenService();
+    private final transient BouncyKeygenService keygen = new BouncyKeygenService();
 
     @Override
     public void init() throws ServletException {

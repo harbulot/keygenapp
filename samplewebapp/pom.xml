@@ -11,7 +11,7 @@
 	<name>Keygen App :: Sample webapp</name>
 	<dependencies>
 		<dependency>
-			<groupId>uk.ac.manchester.rcs.bruno.keygenapp</groupId>
+			<groupId>bblfish.net</groupId>
 			<artifactId>keygenapp-base</artifactId>
             <version>0.3-SNAPSHOT</version>
  		</dependency>

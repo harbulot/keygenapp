@@ -1,6 +1,7 @@
 package net.bblfish.dev.foafssl.keygen.bouncy;
 
 import net.bblfish.dev.foafssl.keygen.Certificate;
+import net.bblfish.dev.foafssl.keygen.KeygenService;
 
 import java.security.InvalidParameterException;
 import java.util.logging.Level;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Henry Story
  */
-public class StaticKeygenService {
+public class StaticKeygenService implements KeygenService {
 	static Logger log = Logger.getLogger(StaticKeygenService.class.getName());
 	static BouncyKeygenService keygenService;
 
@@ -36,7 +37,7 @@ public class StaticKeygenService {
 	 * @param pemCsr
 	 * @return A yet incomplete certificate
 	 */
-	public static Certificate createFromPEM(String pemCsr) {
+	public  Certificate createFromPEM(String pemCsr) {
 		return keygenService.createFromPEM(pemCsr);
 	}
 
@@ -48,11 +49,11 @@ public class StaticKeygenService {
 	 * @return an as yet incomplete Certificate
 	 * @throws InvalidParameterException
 	 */
-	public static Certificate createFromSpkac(String spkac)  {
+	public  Certificate createFromSpkac(String spkac)  {
 		return keygenService.createFromSpkac(spkac);
 	}
 
-    public static Certificate createFromCRMF(String crmfReq) {
+    public  Certificate createFromCRMF(String crmfReq) {
         return keygenService.createFromCRMF(crmfReq);
     }
 
