@@ -34,6 +34,7 @@ package net.bblfish.dev.foafssl.xwiki.internal;
 
 import net.bblfish.dev.foafssl.keygen.Certificate;
 import net.bblfish.dev.foafssl.keygen.KeygenService;
+import net.bblfish.dev.foafssl.keygen.bouncy.BouncyKeygenService;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.component.logging.AbstractLogEnabled;
 import org.xwiki.component.phase.Initializable;
@@ -52,11 +53,11 @@ import java.security.InvalidParameterException;
  */
 @Component("foafssl")
 public class CertificateScriptService extends AbstractLogEnabled implements ScriptService, KeygenService, Initializable {
-    net.bblfish.dev.foafssl.keygen.bouncy.KeygenService servImp;
+    BouncyKeygenService servImp;
 
 
     public void initialize() throws InitializationException {
-        servImp = new net.bblfish.dev.foafssl.keygen.bouncy.KeygenService();
+        servImp = new BouncyKeygenService();
         try {
             servImp.initialize();
         } catch (Exception e) {

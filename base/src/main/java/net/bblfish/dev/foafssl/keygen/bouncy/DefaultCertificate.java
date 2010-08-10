@@ -67,11 +67,11 @@ public class DefaultCertificate implements Certificate {
 	double numHours = 0;
 	double earlier = 0;
 	PubKey subjectPubKey;
-	private KeygenService service;
+	private BouncyKeygenService service;
 	X509Certificate cert = null;
 	CertSerialisation serialization;
 
-	DefaultCertificate(KeygenService service) {
+	DefaultCertificate(BouncyKeygenService service) {
 		this.service = service;
 	}
 

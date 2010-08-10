@@ -33,6 +33,8 @@ POSSIBILITY OF SUCH DAMAGE.
 package net.bblfish.dev.foafssl.keygen.bouncy;
 
 import net.bblfish.dev.foafssl.keygen.Certificate;
+import net.bblfish.dev.foafssl.keygen.KeygenException;
+import net.bblfish.dev.foafssl.keygen.KeygenService;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Service;
 import org.bouncycastle.asn1.*;
@@ -71,6 +73,9 @@ import static net.bblfish.dev.foafssl.keygen.bouncy.DefaultPubKey.create;
  * from <a href="http://en.wikipedia.org/wiki/Certification_request">Certification Requests</a>.
  * </p>
  * <p>This one uses bouncycastle encryption library.</p>
+ *
+ * Question: should the methods be throwing exceptions or should they log errors and return null?
+ *
  * @author Bruno Harbulot
  * @author Henry Story
  * @since Feb 17, 2010
@@ -78,12 +83,12 @@ import static net.bblfish.dev.foafssl.keygen.bouncy.DefaultPubKey.create;
 // Annotations explained at http://felix.apache.org/site/apache-felix-maven-scr-plugin.html
 @Component(specVersion = "1.1")
 @Service
-public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenService {
+public class BouncyKeygenService implements KeygenService {
 	KeyStore keyStore;
 	PrivateKey privateKey;
 	X509Certificate certificate;
 	SecureRandom numberGenerator;
-	final Logger log = Logger.getLogger(KeygenService.class.getName());
+	final Logger log = Logger.getLogger(BouncyKeygenService.class.getName());
 
 	static {
 		if (Security.getProvider(BouncyCastleProvider.PROVIDER_NAME) == null) {
@@ -125,7 +130,7 @@ public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenServi
 
 	public void initialize() throws Exception {
 		log.info("initializing " + this.getClass().getCanonicalName());
-		URL certFile = KeygenService.class.getResource("/cacert.p12");
+		URL certFile = BouncyKeygenService.class.getResource("/cacert.p12");
 		InputStream in;
 		try {
 			in = certFile.openStream();
@@ -191,6 +196,10 @@ public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenServi
 
 	@Override
 	public Certificate createFromPEM(String pemCsr) {
+        if (pemCsr == null) {
+            log.warning("pemCsr was null");
+            return null;
+        }
 		PEMReader pemReader = new PEMReader(new StringReader(pemCsr));
 		Object pemObject;
 		try {
@@ -217,8 +226,11 @@ public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenServi
 	}
 
 	@Override
-	public Certificate createFromSpkac(String spkac) throws InvalidParameterException {
-		if (spkac == null) throw new InvalidParameterException("SPKAC parameter is null");
+	public Certificate createFromSpkac(String spkac) {
+		if (spkac == null) {
+            log.warning("SPKAC parameter is null, should be checked before");
+            return null;
+        }
 		try {
 			NetscapeCertRequest certRequest = new NetscapeCertRequest(Base64.decode(spkac));
 			DefaultCertificate cert = new DefaultCertificate(this);
@@ -232,7 +244,7 @@ public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenServi
 	}
 
 	@Override
-	public Certificate createFromCRMF(String crmfReq) throws Exception {
+	public Certificate createFromCRMF(String crmfReq)  {
 		ASN1InputStream asn1InputStream = new ASN1InputStream(Base64.decode(crmfReq));
 		CertReqMessages certReqMessages = null;
 		try {
@@ -385,7 +397,7 @@ public class KeygenService implements net.bblfish.dev.foafssl.keygen.KeygenServi
 //					+ attrTypeAndValue.getType());
 //			}
 		} catch (Exception e) {
-			throw e;
+			log.log(Level.WARNING,"caught exception in CRMF code",e);
 		}
 		return null;
 	}

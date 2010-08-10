@@ -19,10 +19,10 @@ import java.util.logging.Logger;
  */
 public class StaticKeygenService {
 	static Logger log = Logger.getLogger(StaticKeygenService.class.getName());
-	static KeygenService keygenService;
+	static BouncyKeygenService keygenService;
 
 	static {
-		keygenService = new KeygenService();
+		keygenService = new BouncyKeygenService();
 		try {
 			keygenService.initialize();
 		} catch (Exception e) {
@@ -48,11 +48,11 @@ public class StaticKeygenService {
 	 * @return an as yet incomplete Certificate
 	 * @throws InvalidParameterException
 	 */
-	public static Certificate createFromSpkac(String spkac) throws InvalidParameterException {
+	public static Certificate createFromSpkac(String spkac)  {
 		return keygenService.createFromSpkac(spkac);
 	}
 
-    public static Certificate createFromCRMF(String crmfReq) throws Exception {
+    public static Certificate createFromCRMF(String crmfReq) {
         return keygenService.createFromCRMF(crmfReq);
     }
 

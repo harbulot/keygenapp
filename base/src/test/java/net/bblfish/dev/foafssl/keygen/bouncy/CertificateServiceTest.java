@@ -69,7 +69,7 @@ public class CertificateServiceTest extends TestCase {
 	 * @throws Exception
 	 */
 	public void testSpkac() throws Exception {
-		net.bblfish.dev.foafssl.keygen.bouncy.KeygenService srvc = new net.bblfish.dev.foafssl.keygen.bouncy.KeygenService();
+		BouncyKeygenService srvc = new BouncyKeygenService();
 		srvc.initialize();
 		Certificate cert = srvc.createFromSpkac(spkac);
 		PubKey spk = cert.getSubjectPublicKey();
@@ -130,7 +130,7 @@ public class CertificateServiceTest extends TestCase {
 	 * @throws Exception
 	 */
 	public void testSpkacOneYear() throws Exception {
-		net.bblfish.dev.foafssl.keygen.bouncy.KeygenService srvc = new net.bblfish.dev.foafssl.keygen.bouncy.KeygenService();
+		BouncyKeygenService srvc = new BouncyKeygenService();
 		srvc.initialize();
 		Certificate cert = srvc.createFromSpkac(spkac);
 		PubKey spk = cert.getSubjectPublicKey();
@@ -204,7 +204,7 @@ public class CertificateServiceTest extends TestCase {
 	}
 
 	public void testInit() throws Exception {
-		net.bblfish.dev.foafssl.keygen.bouncy.KeygenService srvc = new net.bblfish.dev.foafssl.keygen.bouncy.KeygenService();
+		BouncyKeygenService srvc = new BouncyKeygenService();
 		srvc.initialize();
 	}
 

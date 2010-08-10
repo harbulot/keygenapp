@@ -32,11 +32,11 @@
 
 package net.bblfish.dev.foafssl.keygen;
 
-import java.security.InvalidParameterException;
-
 /**
  * A service to get Certificates from <a href="http://en.wikipedia.org/wiki/Certification_request">Certification Requests</a>
  * These can the be used to get information about the CSR's public key, and generate a certifiate to return to the server.
+ *
+ * Question: should the methods be throwing exceptions or should they log errors and return null?
  *
  * @author Henry J. Story
  */
@@ -52,10 +52,8 @@ public interface KeygenService {
 	 *
 	 * @param csr a <a href="http://en.wikipedia.org/wiki/PEM">PEM</a> <a href="http://en.wikipedia.org/wiki/Certification_request">Certificate Signing Request</a>
 	 * @return a certificate using the CSR, and cert defaults
-	 * @throws java.security.InvalidParameterException
-	 *          in case the parameter is null
 	 */
-	Certificate createFromPEM(String csr) throws InvalidParameterException;
+	Certificate createFromPEM(String csr);
 
 	/**
 	 * Creates a certificate stub from the given <a href="http://en.wikipedia.org/wiki/Spkac">SPKAC</a>
@@ -68,10 +66,8 @@ public interface KeygenService {
 	 *
 	 * @param spkac a <a href="http://en.wikipedia.org/wiki/Spkac">SPKAC</a> <a href="http://en.wikipedia.org/wiki/Certification_request">Certificate Signing Request</a>
 	 * @return a certificate using the CSR, and cert defaults
-	 * @throws java.security.InvalidParameterException
-	 *          thrown if parameter is null
 	 */
-	Certificate createFromSpkac(String spkac) throws InvalidParameterException;
+	Certificate createFromSpkac(String spkac);
 
 
 	/**
@@ -89,7 +85,6 @@ public interface KeygenService {
 	 *
 	 * @param crmfReq the request
 	 * @return a certificate that may be filled in with some extra details in the requests such as webid
-	 * @throws Exception
 	 */
-	Certificate createFromCRMF(String crmfReq) throws Exception;
+	Certificate createFromCRMF(String crmfReq);
 }
