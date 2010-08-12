@@ -2,13 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.jsslutils</groupId>
+        <groupId>org.jsslutils.keygen</groupId>
         <artifactId>keygen</artifactId>
         <version>0.3.2-SNAPSHOT</version>
     </parent>
     <artifactId>keygenapp-base</artifactId>
     <packaging>bundle</packaging>
-    <name>JSSUtils Keygen :: Base Component</name>
+    <name>jSSLutils Keygen :: Base Component</name>
     <build>
         <!--filters>
             <filter>src/main/resources/library.properties</filter>

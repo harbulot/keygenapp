@@ -42,6 +42,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+/**
+ * 
+ * @author Bruno Harbulot
+ * @author Henry Story
+ *
+ */
 public class MiniCaServlet extends HttpServlet {
     private static final long serialVersionUID = -1103006284486954147L;
     private final transient BouncyKeygenService keygen = new BouncyKeygenService();
