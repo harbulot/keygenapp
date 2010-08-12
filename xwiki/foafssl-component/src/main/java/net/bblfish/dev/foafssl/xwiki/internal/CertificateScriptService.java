@@ -32,16 +32,15 @@ POSSIBILITY OF SUCH DAMAGE.
 
 package net.bblfish.dev.foafssl.xwiki.internal;
 
-import net.bblfish.dev.foafssl.keygen.Certificate;
-import net.bblfish.dev.foafssl.keygen.KeygenService;
-import net.bblfish.dev.foafssl.keygen.bouncy.BouncyKeygenService;
+import org.jsslutils.keygen.Certificate;
+import org.jsslutils.keygen.KeygenService;
+import org.jsslutils.keygen.bouncy.BouncyKeygenService;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.component.logging.AbstractLogEnabled;
 import org.xwiki.component.phase.Initializable;
 import org.xwiki.component.phase.InitializationException;
 import org.xwiki.script.service.ScriptService;
 
-import java.security.InvalidParameterException;
 
 /**
  * Component that can then be called by XWiki scripts, that can then call CertificateService.
@@ -70,9 +69,13 @@ public class CertificateScriptService extends AbstractLogEnabled implements Scri
         return servImp.createFromPEM(pemCsr);
     }
 
-    public Certificate createFromSpkac(String spkac) throws InvalidParameterException {
+    public Certificate createFromSpkac(String spkac) {
         return servImp.createFromSpkac(spkac);
     }
+
+   public Certificate createFromCRMF(String crmfReq) {
+       return servImp.createFromCRMF(crmfReq);
+   }
 
 
 }

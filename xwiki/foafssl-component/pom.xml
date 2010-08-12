@@ -32,56 +32,56 @@
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>net.bblfish.dev.xwiki.keygenapp</groupId>
-        <artifactId>keygenapp</artifactId>
-        <version>0.3-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>net.bblfish.dev.xwiki</groupId>
+      <artifactId>keygen</artifactId>
+      <version>0.3.2-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+   </parent>
     <!--groupId>net.bblfish.dev.xwiki.keygenapp</groupId-->
-    <artifactId>foafssl-component</artifactId>
-    <name>XWiki Platform - Foaf+ssl - Component</name>
+   <artifactId>foafssl-component</artifactId>
+   <name>XWiki Platform - Foaf+ssl - Component</name>
 
-    <version>0.3.1-SNAPSHOT</version>
-    <properties>
+   <version>0.3.2-SNAPSHOT</version>
+   <properties>
         <!-- TODO: remove this if you inherit a project that has the core version set >
         <platform.core.version>1.8-SNAPSHOT</platform.core.version-->
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>uk.ac.manchester.rcs.bruno.keygenapp</groupId>
-            <artifactId>keygenapp-base</artifactId>
-            <version>0.3-SNAPSHOT</version>            
-        </dependency>
-        <dependency>
-            <groupId>org.xwiki.platform</groupId>
-            <artifactId>xwiki-core-component-api</artifactId>
-            <version>2.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.xwiki.platform</groupId>
-            <artifactId>xwiki-core-script</artifactId>
-            <version>2.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
+   </properties>
+   <dependencies>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>3.8.1</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jsslutils.keygen</groupId>
+         <artifactId>keygenapp-base</artifactId>
+         <version>0.3-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+         <groupId>org.xwiki.platform</groupId>
+         <artifactId>xwiki-core-component-api</artifactId>
+         <version>2.4</version>
+      </dependency>
+      <dependency>
+         <groupId>org.xwiki.platform</groupId>
+         <artifactId>xwiki-core-script</artifactId>
+         <version>2.4</version>
+      </dependency>
+      <dependency>
+         <groupId>org.bouncycastle</groupId>
             <!-- choose which version of the jdk you are deploying to by commenting one of the line below-->
-            <artifactId>bcprov-jdk16</artifactId>
+         <artifactId>bcprov-jdk16</artifactId>
             <!--artifactId>bcprov-jdk15</artifactId-->
-            <version>1.45</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-        </dependency>
+         <version>1.45</version>
+      </dependency>
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>servlet-api</artifactId>
+         <version>2.5</version>
+      </dependency>
         <!-- Add here all your other dependencies -->
-    </dependencies>
+   </dependencies>
 </project>

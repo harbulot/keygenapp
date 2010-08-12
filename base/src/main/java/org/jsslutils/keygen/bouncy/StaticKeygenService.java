@@ -1,7 +1,7 @@
-package net.bblfish.dev.foafssl.keygen.bouncy;
+package org.jsslutils.keygen.bouncy;
 
-import net.bblfish.dev.foafssl.keygen.Certificate;
-import net.bblfish.dev.foafssl.keygen.KeygenService;
+import org.jsslutils.keygen.Certificate;
+import org.jsslutils.keygen.KeygenService;
 
 import java.security.InvalidParameterException;
 import java.util.logging.Level;

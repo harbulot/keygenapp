@@ -2,8 +2,8 @@
  * New BSD license: http://opensource.org/licenses/bsd-license.php
  *
  *  Copyright (c) 2010.
- * Henry Story
- * http://bblfish.net/
+ *  Henry Story
+ *  http://bblfish.net/
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen;
+package org.jsslutils.keygen;
 
 /**
  * @author Henry J. Story

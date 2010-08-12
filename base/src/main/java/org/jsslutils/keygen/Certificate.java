@@ -30,7 +30,7 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen;
+package org.jsslutils.keygen;
 
 
 import java.security.cert.X509Certificate;

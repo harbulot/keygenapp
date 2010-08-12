@@ -30,7 +30,7 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen;
+package org.jsslutils.keygen;
 
 /**
  * A service to get Certificates from <a href="http://en.wikipedia.org/wiki/Certification_request">Certification Requests</a>

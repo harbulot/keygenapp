@@ -37,20 +37,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>net.bblfish.dev.xwiki.keygenapp</groupId>
-        <artifactId>keygenapp</artifactId>
-        <version>0.3.1-SNAPSHOT</version>
+        <groupId>net.bblfish.dev.xwiki</groupId>
+        <artifactId>keygen</artifactId>
+        <version>0.3.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>foafssl-application</artifactId>
-    <name>XWiki Platform - Applications - Foaf+ssl</name>
-    <version>0.3.1-SNAPSHOT</version>
+    <name>XWiki Platform - Foaf+ssl - Web</name>
+    <version>0.3.2-SNAPSHOT</version>
     <packaging>xar</packaging>
     <description>FOAF+SSL certificate creation for XWiki</description>
     <dependencies>
         <dependency>
-            <groupId>uk.ac.manchester.rcs.bruno.keygenapp</groupId>
+            <groupId>org.jsslutils.keygen</groupId>
             <artifactId>keygenapp-base</artifactId>
             <version>0.3-SNAPSHOT</version>            
         </dependency>

@@ -30,39 +30,47 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen.bouncy;
+package org.jsslutils.keygen;
 
-import junit.framework.TestCase;
-
-import java.io.BufferedReader;
-import java.io.StringReader;
+import javax.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
- * Test cases always useful
- * <p/>
- * User: hjs
- * Date: Feb 18, 2010
- * Time: 3:59:02 PM
+ * This makes it easier to send serialisations out in scripting languages such as velocity.
+ *
+ * @author Henry K. Story
  */
-public class DefaultRSAPubKeyTest extends TestCase {
-	public void testGetHexModulus() throws Exception {
-	}
+public interface CertSerialisation {
 
-	public void testGetIntExponent() throws Exception {
-	}
+	/**
+	 * @return the length in bytes of this serialisation
+	 */
+	int getLength();
 
-	public void testGetPublicKey() throws Exception {
-	}
+	/**
+	 * @return the mime type of this serialisation
+	 */
+	String getMimeType();
 
-	public void testBeautify() throws Exception {
-		String longStr = "The Velocity User Guide is intended to help page designers and content providers get acquainted with Velocity and the syntax of its simple yet powerful scripting language, the Velocity Template Language (VTL). Many of the examples in this guide deal with using Velocity to embed dynamic content in web sites, but all VTL examples are equally applicable to other pages and templates.";
-		String res = DefaultRSAPubKey.beautify(longStr);
-		BufferedReader sbuf = new BufferedReader(new StringReader(res));
-		String line;
-		while ((line = sbuf.readLine()) != null) {
-			if (line.length() != 60) {
-				assertTrue("only the last line can be less than 60 chars", sbuf.readLine() == null);
-			}
-		}
-	}
+	/**
+	 * @return the content as an array of bytes, for frameworks that don't take streams
+	 */
+	byte[] getContent();
+
+
+	/**
+	 * @param out the output stream to write this serialisation too
+	 */
+	void writeTo(OutputStream out) throws IOException;
+
+	/**
+	 * Write the full response the response object, including headers, such as content length and mime type
+	 * Clients should use this method, as it reduces the risk of making a mistake
+	 *
+	 * @param response
+	 */
+	void writeTo(ServletResponse response) throws IOException;
+
+
 }

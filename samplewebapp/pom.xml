@@ -1,29 +1,30 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>bblfish.net</groupId>
-		<artifactId>keygenapp</artifactId>
-        <version>0.3-SNAPSHOT</version>
-	</parent>
-	<artifactId>keygenapp-samplewebapp</artifactId>
-	<packaging>war</packaging>
-	<name>Keygen App :: Sample webapp</name>
-	<dependencies>
-		<dependency>
-			<groupId>bblfish.net</groupId>
-			<artifactId>keygenapp-base</artifactId>
-            <version>0.3-SNAPSHOT</version>
- 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.jsslutils</groupId>
+      <artifactId>keygen</artifactId>
+      <version>0.3.2-SNAPSHOT</version>
+   </parent>
+   <artifactId>keygenapp-samplewebapp</artifactId>
+   <packaging>war</packaging>
+   <name>JSSUtils Keygen :: Sample WebApp</name>
+   <dependencies>
+      <dependency>
+         <groupId>org.jsslutils.keygen</groupId>
+         <artifactId>keygenapp-base</artifactId>
+         <version>0.3-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>servlet-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>javax.servlet.jsp</groupId>
+         <artifactId>jsp-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+   </dependencies>
 </project>

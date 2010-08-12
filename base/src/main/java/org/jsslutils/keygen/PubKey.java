@@ -30,25 +30,25 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen;
+package org.jsslutils.keygen;
 
+
+import java.security.PublicKey;
 
 /**
- * An <a href="http://en.wikipedia.org/wiki/RSA">RSA</a> public key, is composed of a modulus and an exponent.
+ * Wrapper class for the java Public Key class, in a public private key pair.
+ * To give access to the few methods needed by a scripting engine
  *
  * @author Henry J. Story
  */
-public interface RSAPubKey extends PubKey {
+
+public interface PubKey {
 
 	/**
-	 * @return the modulus as a hexadecimal string as specified by the <a href="http://www.w3.org/ns/auth/cert">cert ontology</a>.
+	 * The underlying class
+	 *
+	 * @return the public key, on which this wrapper class is basd
 	 */
-	String getHexModulus();
-
-
-	/**
-	 * @return the exponent as an integer string
-	 */
-	String getIntExponent();
+	PublicKey getPublicKey();
 
 }

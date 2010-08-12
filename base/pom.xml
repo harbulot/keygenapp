@@ -2,13 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>bblfish.net</groupId>
-        <artifactId>keygenapp</artifactId>
-        <version>0.3-SNAPSHOT</version>
+        <groupId>org.jsslutils</groupId>
+        <artifactId>keygen</artifactId>
+        <version>0.3.2-SNAPSHOT</version>
     </parent>
     <artifactId>keygenapp-base</artifactId>
     <packaging>bundle</packaging>
-    <name>Keygen App :: Base</name>
+    <name>JSSUtils Keygen :: Base Component</name>
     <build>
         <!--filters>
             <filter>src/main/resources/library.properties</filter>
@@ -34,7 +34,7 @@
                         <!--Embed-Transitive>true</Embed-Transitive-->
                         <Service-Component>OSGI-INF/serviceComponents.xml</Service-Component>
                         <Import-Package>!junit.framework,!junit.textui,*</Import-Package>
-                        <Export-Package>!junit,net.bblfish.dev.foafssl.keygen.*</Export-Package>
+                        <Export-Package>!junit,org.jsslutils.keygen.*</Export-Package>
                         <!--Bundle-SymbolicName>org.apache.clerezza.foafssl</Bundle-SymbolicName-->
                     </instructions>
                 </configuration>

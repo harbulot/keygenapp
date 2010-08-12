@@ -1,61 +1,50 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
-    <parent>
+   <parent>
       <groupId>org.xwiki.platform.applications</groupId>
       <artifactId>xwiki-applications</artifactId>
-      <version>28-SNAPSHOT</version>
-    </parent>
-    <groupId>net.bblfish.dev.xwiki.keygenapp</groupId>
-	<artifactId>keygenapp</artifactId>
-	<packaging>pom</packaging>
-	<version>0.3.1-SNAPSHOT</version>
-	<name>Keygen App</name>
-	<url>http://esw.w3.org/topic/foaf+ssl</url>
-	<licenses>
-		<license>
-			<name>BSD</name>
-			<url>../LICENSE.txt</url>
-			<distribution>repo</distribution>
-            <comments>BSD Licence by the University of Manchester</comments>
-		</license>
-        <license>
-            <name>BSD</name>
-            <url>./LICENSE.txt</url>
-            <distribution>repo</distribution>
-            <comments>BSD Licence by Henry Story at bblfish.net</comments>
-        </license>
-	</licenses>
+      <version>30-SNAPSHOT</version>
+   </parent>
+   <groupId>net.bblfish.dev.xwiki</groupId>
+   <artifactId>keygen</artifactId>
+   <packaging>pom</packaging>
+   <version>0.3.2-SNAPSHOT</version>
+   <name>Xwiki Keygen Module</name>
+   <url>http://esw.w3.org/topic/foaf+ssl</url>
+   <licenses>
+      <license>
+         <name>BSD</name>
+         <url>../LICENSE.txt</url>
+         <distribution>repo</distribution>
+         <comments>BSD Licence by the University of Manchester</comments>
+      </license>
+      <license>
+         <name>BSD</name>
+         <url>./LICENSE.txt</url>
+         <distribution>repo</distribution>
+         <comments>BSD Licence by Henry Story at bblfish.net</comments>
+      </license>
+   </licenses>
 
-	<modules>
-		<module>foafssl-application</module>
-		<module>foafssl-component</module>
-	</modules>
+   <modules>
+      <module>foafssl-application</module>
+      <module>foafssl-component</module>
+   </modules>
 	
-	<developers>
-		<developer>
-			<id>bblfish</id>
-			<name>Henry Story</name>
-			<email>henry.story@bblfish.net</email>
-			<organization>The BabelFish Freelance Org</organization>
-			<organizationUrl>http://bblfish.net/</organizationUrl>
-			<roles>
-				<role>architect</role>
-				<role>developer</role>
-			</roles>
-			<timezone>0</timezone>
-		</developer>
-			<developer>
-			<id>bruno.harbulot</id>
-			<name>Bruno Harbulot</name>
-			<email>Bruno.Harbulot@manchester.ac.uk</email>
-			<organization>The University of Manchester</organization>
-			<organizationUrl>http://www.manchester.ac.uk/</organizationUrl>
-			<roles>
-				<role>architect</role>
-				<role>developer</role>
-			</roles>
-			<timezone>0</timezone>
-		</developer>
-	</developers>
+   <developers>
+      <developer>
+         <id>bblfish</id>
+         <name>Henry Story</name>
+         <email>henry.story@bblfish.net</email>
+         <organization>The BabelFish Freelance Org</organization>
+         <organizationUrl>http://bblfish.net/</organizationUrl>
+         <roles>
+            <role>architect</role>
+            <role>developer</role>
+         </roles>
+         <timezone>0</timezone>
+      </developer>
+   </developers>
 </project>

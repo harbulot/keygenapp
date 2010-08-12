@@ -30,10 +30,10 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen.bouncy;
+package org.jsslutils.keygen.bouncy;
 
-import net.bblfish.dev.foafssl.keygen.PubKey;
-import net.bblfish.dev.foafssl.keygen.RSAPubKey;
+import org.jsslutils.keygen.PubKey;
+import org.jsslutils.keygen.RSAPubKey;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;

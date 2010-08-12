@@ -30,12 +30,10 @@
  Author........: Bruno Harbulot
 
  */
-package uk.ac.manchester._rcs.bruno.keygenapp.webapp;
+package org.jssutils.keygen.webapp;
 
-import net.bblfish.dev.foafssl.keygen.Certificate;
-import net.bblfish.dev.foafssl.keygen.KeygenService;
-import net.bblfish.dev.foafssl.keygen.bouncy.BouncyKeygenService;
-import net.bblfish.dev.foafssl.keygen.bouncy.StaticKeygenService;
+import org.jsslutils.keygen.Certificate;
+import org.jsslutils.keygen.bouncy.BouncyKeygenService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

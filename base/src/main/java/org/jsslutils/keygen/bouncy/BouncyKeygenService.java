@@ -30,11 +30,10 @@ POSSIBILITY OF SUCH DAMAGE.
   Contributor...: Henry Story
  */
 
-package net.bblfish.dev.foafssl.keygen.bouncy;
+package org.jsslutils.keygen.bouncy;
 
-import net.bblfish.dev.foafssl.keygen.Certificate;
-import net.bblfish.dev.foafssl.keygen.KeygenException;
-import net.bblfish.dev.foafssl.keygen.KeygenService;
+import org.jsslutils.keygen.Certificate;
+import org.jsslutils.keygen.KeygenService;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Service;
 import org.bouncycastle.asn1.*;
@@ -65,7 +64,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static net.bblfish.dev.foafssl.keygen.bouncy.DefaultPubKey.create;
+import static org.jsslutils.keygen.bouncy.DefaultPubKey.create;
 
 /**
  * <p>

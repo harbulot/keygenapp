@@ -30,7 +30,7 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen.bouncy;
+package org.jsslutils.keygen.bouncy;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -40,16 +40,16 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import static net.bblfish.dev.foafssl.keygen.Certificate.*;
+import static org.jsslutils.keygen.Certificate.*;
 
 import junit.framework.TestCase;
-import net.bblfish.dev.foafssl.keygen.*;
-import net.bblfish.dev.foafssl.keygen.KeygenService;
+import org.jsslutils.keygen.*;
+import org.jsslutils.keygen.KeygenService;
 import org.bouncycastle.asn1.x509.X509Name;
 
 
 /**
- * Tests for the {@link net.bblfish.dev.foafssl.keygen.KeygenService} component.
+ * Tests for the {@link org.jsslutils.keygen.KeygenService} component.
  *
  * @version $Id: $
  */

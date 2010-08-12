@@ -30,10 +30,10 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.bblfish.dev.foafssl.keygen.bouncy;
+package org.jsslutils.keygen.bouncy;
 
-import net.bblfish.dev.foafssl.keygen.CertSerialisation;
-import net.bblfish.dev.foafssl.keygen.Certificate;
+import org.jsslutils.keygen.CertSerialisation;
+import org.jsslutils.keygen.Certificate;
 
 import javax.servlet.ServletResponse;
 import java.io.IOException;

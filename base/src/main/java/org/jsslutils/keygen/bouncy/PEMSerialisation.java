@@ -1,6 +1,6 @@
-package net.bblfish.dev.foafssl.keygen.bouncy;
+package org.jsslutils.keygen.bouncy;
 
-import net.bblfish.dev.foafssl.keygen.Certificate;
+import org.jsslutils.keygen.Certificate;
 import org.bouncycastle.openssl.PEMWriter;
 
 import java.io.IOException;

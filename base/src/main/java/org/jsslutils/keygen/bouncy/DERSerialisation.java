@@ -1,6 +1,6 @@
-package net.bblfish.dev.foafssl.keygen.bouncy;
+package org.jsslutils.keygen.bouncy;
 
-import net.bblfish.dev.foafssl.keygen.Certificate;
+import org.jsslutils.keygen.Certificate;
 
 import java.security.cert.CertificateEncodingException;
 import java.util.logging.Level;

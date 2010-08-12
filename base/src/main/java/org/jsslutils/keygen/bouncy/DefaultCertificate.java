@@ -30,11 +30,11 @@ POSSIBILITY OF SUCH DAMAGE.
   Author: Henry Story
  */
 
-package net.bblfish.dev.foafssl.keygen.bouncy;
+package org.jsslutils.keygen.bouncy;
 
-import net.bblfish.dev.foafssl.keygen.CertSerialisation;
-import net.bblfish.dev.foafssl.keygen.Certificate;
-import net.bblfish.dev.foafssl.keygen.PubKey;
+import org.jsslutils.keygen.CertSerialisation;
+import org.jsslutils.keygen.Certificate;
+import org.jsslutils.keygen.PubKey;
 import org.bouncycastle.asn1.DERObjectIdentifier;
 import org.bouncycastle.asn1.misc.MiscObjectIdentifiers;
 import org.bouncycastle.asn1.misc.NetscapeCertType;
